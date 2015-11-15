@@ -36,9 +36,7 @@ import com.group1.app.ungdungdoctruyen.items.ChapterItems;
 
 
 public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
-	String filename2 = "http://levietan.5gbfree.com/narutochap3.zip";
-	String fileName2 = filename2.substring(filename2.lastIndexOf('/') + 1);
-	File file = new File("/sdcard/"+fileName2);
+	File file ;
 	private ProgressDialog mProgressDialog;
 	Context context;
 	int layoutResourceId;
@@ -94,7 +92,7 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 							mProgressDialog
 									.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 							DownloadFile downloadFile = new DownloadFile();
-							downloadFile.execute("http://levietan.5gbfree.com/narutochap3.zip");
+							downloadFile.execute(chapers.getUrlDown());
 							mProgressDialog.show();
 					}
 				});
@@ -123,7 +121,11 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 			// TODO Auto-generated method stub
 			int count;
 			try {
-				String filename = "http://levietan.5gbfree.com/narutochap3.zip";
+				
+			
+				String filename =params[0];
+				String fileName2 = filename.substring(filename.lastIndexOf('/') + 1);
+				file	= new File("/sdcard/"+fileName2);
 				URL url = new URL(params[0]);
 				URLConnection conn = url.openConnection();
 				conn.connect();

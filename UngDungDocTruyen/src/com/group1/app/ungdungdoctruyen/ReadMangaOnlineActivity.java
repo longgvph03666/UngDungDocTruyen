@@ -1,18 +1,33 @@
 package com.group1.app.ungdungdoctruyen;
 
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
 import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.group1.app.ungdungdoctruyen.items.MangaInforItems;
+
 public class ReadMangaOnlineActivity extends Activity {
 
 	 ArrayList<String> arrImg;
-     
+     String link;
      int i = 0;
      float x1,x2;
      float y1, y2;
@@ -23,8 +38,11 @@ public class ReadMangaOnlineActivity extends Activity {
                  super.onCreate(savedInstanceState);
                  setContentView(R.layout.activity_read_manga_online);
                  img = (ImageView) findViewById(R.id.imageView1);
-                 arrImg   = getListData();
-                 new ImageDownloaderTask(img).execute(arrImg.get(i).toString());
+                 arrImg   = new ArrayList<String>();
+                 Intent intent = getIntent();
+                 link = intent.getStringExtra("url");
+                 new DoGetRss().execute();
+                
      }
     
      // onTouchEvent () method geints called when User performs any touch event on screen 
@@ -99,6 +117,42 @@ public class ReadMangaOnlineActivity extends Activity {
                      }
                      return listMockData;
                  }
-             	
+                 class DoGetRss extends AsyncTask<Void, Void, Void>{
+
+             		@Override
+             		protected Void doInBackground(Void... params) {
+             			// TODO Auto-generated method stub
+             			try {
+             				URL url = new URL(link);
+             				URLConnection urlConnection = url.openConnection();
+             				InputStream iS = urlConnection.getInputStream();			
+             				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+             				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+             				Document doc = dBuilder.parse(iS);
+                             doc.getDocumentElement().normalize();
+                             Node nNews = doc.getElementsByTagName("channel").item(0);
+                             Element eNews = (Element) nNews;
+                             NodeList nListNews = eNews.getElementsByTagName("item"); 
+                             
+                             for(int i = 0; i<nListNews.getLength();i++){
+                             	
+                             Node n1News = nListNews.item(i);        
+                             String imgLink = ((Element) n1News).getElementsByTagName("link").item(0).getTextContent();               
+                            
+                             arrImg.add(imgLink);			    
+                          }
+             			} catch (Exception e) {
+             				// TODO Auto-generated catch block
+             				e.printStackTrace();
+             			}
+             			return null;
+             		}
+             		@Override
+             		protected void onPostExecute(Void result) {
+             			// TODO Auto-generated method stub
+             			super.onPostExecute(result);
+             			 new ImageDownloaderTask(img).execute(arrImg.get(i).toString());
+             		}
+             		}	 	
 
 }

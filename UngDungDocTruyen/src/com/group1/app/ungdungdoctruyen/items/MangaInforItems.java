@@ -6,6 +6,24 @@ public class MangaInforItems {
        String summary;
        String genre;
        String url;
+       String chapter;
+       public MangaInforItems(){}
+	public MangaInforItems(String author, String mangaName, String summary,
+			String genre, String url, String chapter) {
+		
+		this.author = author;
+		this.mangaName = mangaName;
+		this.summary = summary;
+		this.genre = genre;
+		this.url = url;
+		this.chapter = chapter;
+	}
+	public String getChapter() {
+		return chapter;
+	}
+	public void setChapter(String chapter) {
+		this.chapter = chapter;
+	}
 	public String getAuthor() {
 		return author;
 	}
