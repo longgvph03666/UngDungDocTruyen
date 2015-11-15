@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.group1.app.ungdungdoctruyen"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="20" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_app"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/custom_actionbar_style" 
+         android:largeHeap="true">
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.Tab1"
+            android:label="@string/title_activity_tab1" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.Tab2"
+            android:label="@string/title_activity_tab2" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.Tab3"
+            android:label="@string/title_activity_tab3" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.Tab4"
+            android:label="@string/title_activity_tab4" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.RssBook_index"
+            android:label="@string/title_activity_rss_book_index" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.RssBook_Detail"
+            android:label="@string/title_activity_rss_book__detail" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.Rss_Webview"
+            android:label="@string/title_activity_rss__webview" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.MangaInforActivity"
+            android:label="@string/title_activity_manga_infor" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.OpenFileActivity"
+            android:label="@string/title_activity_open_file" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.ReadMangaActivity"
+            android:label="@string/title_activity_read_manga" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.EcomicType"
+            android:label="@string/title_activity_ecomic__type" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.ReadMangaOnlineActivity"
+            android:label="@string/title_activity_read_manga_online" >
+        </activity>
+    </application>
+
+</manifest>

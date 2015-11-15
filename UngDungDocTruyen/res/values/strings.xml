@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ứng dụng đọc truyện</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_tab1">Tab1</string>
+    <string name="title_activity_tab2">Tab2</string>
+    <string name="title_activity_tab3">Tab3</string>
+    <string name="title_activity_tab4">Tab4</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="search">Search</string>
+    <string name="setting">Setting</string>
+    <string name="update">Update</string>
+    <string name="desc">cover art</string>
+    <string name="manga_name">Tên truyện:</string>
+    <string name="manga_author">Tác giả:</string>
+    <string name="manga_genre">Thể loại:</string>
+    <string name="manga_chapter">Chapter(s):</string>
+    <string name="manga_status">Status:</string>
+    <string name="manga_summary">Tóm tắt:</string>
+    <string name="add_manga">Add Manga</string>
+    <string name="search_hint">Search mangas</string>
+    <string name="search_settings">Search Mangas</string>
+
+    <string-array name="nav_drawer_items">
+        <item>Trang chủ</item>
+        <item>Danh sách truyện</item>
+        <item>Truyện đã tải</item>
+        <item>Danh sách yêu thích</item>
+        <item>Truyện theo RSS</item>
+        <item>Mở truyện từ thẻ nhớ</item>
+        <item>Trợ giúp</item>
+        <item>Cài đặt</item>
+        <item>Giới thiệu</item>
+        <item>Khích lệ chúng tôi</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item>@drawable/ic_home</item>
+        <item>@drawable/ic_book</item>
+        <item>@drawable/ic_download</item>
+        <item>@drawable/ic_like</item>
+        <item>@drawable/ic_rss</item>
+        <item>@drawable/ic_open</item>
+        <item>@drawable/ic_help</item>
+        <item>@drawable/ic_setting</item>
+        <item>@drawable/ic_infor</item>
+        <item>@drawable/ic_rate</item>
+    </array>
+
+    <string name="title_activity_rss_book_index">RssBook_index</string>
+    <string name="title_activity_rss_book__detail">RssBook_Detail</string>
+    <string name="title_activity_rss__webview">Báo điện tử</string>
+
+    <array name="images_array">
+        <item>http://levietan.5gbfree.com/naruto.png</item>
+        <item>http://levietan.5gbfree.com/yugioh.png</item>
+        <item>http://levietan.5gbfree.com/conan.png</item>
+        <item>http://levietan.5gbfree.com/inuyasha.png</item>
+        <item>http://levietan.5gbfree.com/one_punch_man.png</item>
+        <item>http://levietan.5gbfree.com/bleach.png</item>
+        <item>http://levietan.5gbfree.com/one_piece.png</item>
+    </array>
+    <array name="headline_array">
+        <item>Naruto</item>
+        <item>Yugi Oh!</item>
+        <item>Conan </item>
+        <item>Inuyasha</item>
+        <item>One punch man</item>
+        <item>Bleach</item>
+        <item>One piece</item>
+    </array>
+    <array name="author_array">
+        <item>Tác giả:Kishimoto Masashi</item>
+        <item>Tác giả:Kazuki Takahashi</item>
+        <item>Tác giả:Gosho Aoyama </item>
+        <item>Tác giả:Rumiko Takahashi</item>
+        <item>Tác giả:Yusuke Murata</item>
+        <item>Tác giả:Tite Kubo</item>
+        <item>Tác giả:Eiichiro Oda</item>
+    </array>
+    <array name="type_array">
+        <item>Thể loại:Hài hước,hành động,phưu lưu</item>
+        <item>Thể loại:Hành động,phưu lưu</item>
+        <item>Thể loại:Hành động,phưu lưu,trinh thám </item>
+        <item>Thể loại:Hành động,phưu lưu</item>
+        <item>Thể loại:Hành động,hài hước,siêu nhiên</item>
+        <item>Thể loại:Hành động,hài hước,siêu nhiên</item>
+        <item>Thể loại:Hành động,hài hước,phưu lưu</item>
+    </array>
+    <array name="summary_array">
+        <item>Mười hai năm trước khi bộ truyện này bắt đầu, con Hồ Ly Chín Đuôi đã tấn công ngôi làng ninja làng Mộc Diệp . Đủ sức mạnh để khiến sóng thần nổi dậy và san bằng núi non chỉ với một trong số chín cái đuôi của nó, nó đã gây nên sự hỗn loạn tột cùng và giết chóc nhiều người, cho tới khi người lãnh đạo của Mộc Diệp – ngài Hokage Đệ Tứ đã hi sinh để phong ấn con quái vật bằng thuật cấm: Kin Jutsu Ogi! "Shiki Fuin" (Một thuật cấm phải đánh đổi bằng tính mạng) vào người Naruto khi cậu ta mới sinh. Hokage Đệ Tứ, người được vinh danh vì đã phong ấn con yêu hồ li, mong muốn Naruto được tôn trọng vì đã là thân xác chứa đựng con quái vật.</item>
+        <item>Yu-Gi-Oh! là câu chuyện kể về Yugi Moto, một học sinh trường Domino. Tính tình nhút nhát, hiền lành. Cậu là cháu nội của Solomon Moto. Trước đây, ông cậu vốn là một kiện tướng chơi trò chơi cực kì xuất sắc. Từ nhỏ, ông cậu đã dạy cậu chơi các trò chơi, và ông còn cho cậu một bộ xếp hình. Trong khoảng gần bảy năm, cậu đã tìm tòi và đã lắp ráp được thành Trò chơi ngàn năm(Millennium Puzzle). Nhưng cậu đã không thể hoàn thành được vì mảnh chính của trò chơi bị Joey Wheeler ném xuống nước vì muốn chơi xỏ Yugi. Nhưng sau đó, cảm kích vì Yugi đã dùng thân mình bảo vệ cậu trong một lần bị đội trưởng đội kỉ luật có tính cách du côn đánh, họ trở thành bạn của nhau. Joey lặn xuống nước và lấy lại mảnh chính đưa cho ông nội Yugi. Cuối cùng, Trò chơi ngàn năm đã hoàn thành. Nhưng kể từ sau khi hoàn thành Trò chơi ngàn năm, Yugi đã xuất hiện một nhân cách khác mặc dù cậu không nhận ra, đó là Yami Yugi. Cho đến khi Yami Bakura, chủ sở hữu Vòng tròn ngàn năm (Millennium Ring) tìm cách hại Yugi và bạn của cậu trong một trò chơi chết người, thì cũng là lúc Yugi phát hiện ra Yami Yugi. Lúc đầu cậu rất hoảng sợ khi Yami Yugi chính là nhân cách thứ hai của mình. Nhưng sau đó họ trở thành bạn của nhau.</item>
+        <item>Mở đầu câu chyện, cậu học sinh trung học 17 tuổi Shinichi Kudo bị biến thành cậu bé Conan Edogawa. Shinichi trong phần đầu của Thám tử lừng danh Conan được miêu tả là một thám tử học đường xuất sắc. Trong một lần đi chơi công viên "Miền Nhiệt đới" với cô bạn từ thuở nhỏ Ran Mori, cậu tình cờ chứng kiến vụ một án giết người, Kishida - một hành khách trong trò chơi Chuyến tàu tốc hành đã bị giết một cách dã man. Cậu đã giúp cảnh sát làm sáng tỏ vụ án. Trên đường về nhà, cậu vô tình phát hiện một vụ làm ăn mờ ám của những người đàn ông mặc toàn đồ đen. Khi chúng phát hiện ra cậu, Shinichi đã bị đánh ngất đi. Sau đó những người đàn ông áo đen đó đã cho cậu uống một thứ thuốc độc chưa qua thử nghiệm là Apotoxin-4869 (APTX 4869) với mục đích thủ tiêu cậu. Tuy nhiên chất độc đã không giết chết Kudo. Khi tỉnh lại, cậu bàng hoàng nhận thấy mình đã bị teo nhỏ lại thành hình dạng của một cậu học sinh tiểu học. </item>
+        <item>Câu chuyện bắt đầu khi một bán yêu Inu Yasha tấn công một ngôi làng để cướp viên ngọc Tứ Hồn (Shikon no Tama), một bảo bối có thể dùng để làm tăng sức mạnh của anh. Tuy nhiên, Kikyo, một nữ pháp sư (miko) kịp thời ngăn anh lại và dùng mũi tên thanh tẩy của cô phong ấn Inuyasha vào gốc cây cổ thụ thần thánh trong làng. Tuy nhiên vì bị thương quá nặng, biết mình không qua khỏi, Kikyo đã yêu cầu em gái mình là Kaede thiêu xác của cô cùng với viên ngọc Tứ Hồn để cho nó không rơi vào tay kẻ xấu.</item>
+        <item>Câu chuyện diễn ra tại thành phố viễn tuỏng Z, Nhật Bản. Thế giới đầy quái vật bí ẩn xuất hiện và gây ra nhiều thảm họa. Nhân vật chính Saitama, một siêu anh hùng dễ dàng đánh bại các quái vật hay những nhân vật phản diện khác chỉ với một cú đấm. Tuy nhiên, sau khi trở thành quá mạnh, Saitama đã trở nên nhàm chán trong những trận chiến của mình và luôn cố gắng để tìm đối thủ mạnh hơn để chiến đấu.</item>
+        <item>Kurosaki Ichigo là một thiếu niên có khả năng nhìn thấy các linh hồn. Cuộc sống của anh thay đổi nhanh chóng bởi sự xuất hiện đột ngột của một Shinigami (những người điều chỉnh dòng chảy của linh hồn giữa thế giới con người và thế giới bên kia), tên là Kuchiki Rukia, người đến thế giới con người để tìm diệt Hollow - những linh hồn lạc lối rất nguy hiểm. Khi Rukia bị thương nặng vì bảo vệ Ichigo khỏi Hollow, cô cố gắng chuyển một nửa số reiatsu  của cô cho Ichigo để anh có thể đánh bại Hollow</item>
+        <item>Một cậu bé tên Monkey D. Luffy, được khuyến khích bởi người anh hùng thuở nhỏ Shanks "Tóc đỏ", giong buồm ra khơi trên chuyến hành trình tìm kho báu huyền thoại One Piece và trở thành Vua hải tặc. Để làm được điều này, cậu phải đến được tận cùng của vùng biển nguy hiểm và chết chóc nhất thế giới: Grand Line (Đại Hải Trình).Luffy đội trên đầu chiếc mũ rơm như một nhân chứng lịch sử vì chiếc mũ rơm đó đã từng thuộc về hải hải tặc hùng mạnh là: Hải tặc vương Gol.D.Roger và tứ hoàng Shank "tóc đỏ"</item>
+    </array>
+    <array name="covers_array">
+        <item>http://cdn.idigitaltimes.com/sites/idigitaltimes.com/files/2015/07/31/naruto.jpg</item>
+        <item>http://uploads3.yugioh.com/show/1/logo/default/yugioh-series.jpg</item>
+        <item>http://3.bp.blogspot.com/-HFBDDz8Jb2Y/U-q8rqp_wDI/AAAAAAAAAhI/CuqWMuuOlZU/s1600/%5BSUMMER-Raws%5D%2BDetective%2BConan%2B-%2B746%2B(YBC%2B1280x720%2Bx264%2BAAC).mp4_snapshot_03.57_%5B2014.08.13_04.17.04%5D.jpg</item>
+        <item>http://static.tumblr.com/ew5ydf8/h2Im0nkx4/6583_inuyasha.jpg</item>
+        <item>http://img05.deviantart.net/56f1/i/2013/337/2/3/onepunch_man_by_aubsneechan-d6wl8jy.jpg</item>
+        <item>http://i.cdn.turner.com/adultswim/big/img/2014/08/05/Bleach.png</item>
+        <item>http://i.kinja-img.com/gawker-media/image/upload/ffhxlgjixt7tckss6d3l.jpg</item>
+    </array>
+    <array name="chapter_array">
+        <item>Chapter 1</item>
+        <item>Chapter 2</item>
+        <item>Chapter 3</item>
+        <item>Chapter 4</item>
+        <item>Chapter 5</item>
+        <item>Chapter 6</item>
+        <item>Chapter 7</item>
+        <item>Chapter 8</item>
+        <item>Chapter 9</item>
+        <item>Chapter 10 </item>
+        <item>Chapter 11</item>
+        <item>Chapter 12</item>
+        <item>Chapter 13</item>
+        <item>Chapter 14</item>
+    </array>
+    <array name="author2_array">
+        <item>Kishimoto Masashi</item>
+        <item>Kazuki Takahashi</item>
+        <item>Gosho Aoyama </item>
+        <item>Rumiko Takahashi</item>
+        <item>Yusuke Murata</item>
+        <item>Tite Kubo</item>
+        <item>Eiichiro Oda</item>
+    </array>
+    <array name="type2_array">
+        <item>Hài hước,hành động,phưu lưu</item>
+        <item>Hành động,phưu lưu</item>
+        <item>Hành động,phưu lưu,trinh thám </item>
+        <item>Hành động,phưu lưu</item>
+        <item>Hành động,hài hước,siêu nhiên</item>
+        <item>Hành động,hài hước,siêu nhiên</item>
+        <item>Hành động,hài hước,phưu lưu</item>
+    </array>
+
+    <string name="title_activity_manga_infor">MangaInforActivity</string>
+    <string name="title_activity_open_file">OpenFileActivity</string>
+    <string name="title_activity_read_manga">ReadMangaActivity</string>
+    <string name="title_activity_ecomic__type">Ecomic_Type</string>
+    <string name="title_activity_read_manga_online">ReadMangaOnlineActivity</string>
+<string-array name="images_arrays">
+        <item>http://1.bp.blogspot.com/-lsZ6EyY2lMk/VFt_fpb6G6I/AAAAAAABgQ8/dnyNSbhwHOw/s0/vechai-01.jpg</item>
+        <item>http://1.bp.blogspot.com/-yxYJrWwG_fo/VFt_hoK8slI/AAAAAAABgRE/B_Fclgkk7Vw/s0/vechai-02_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-fAVFtYJWMbM/VFt_j00gZnI/AAAAAAABgRM/VryAujsKHT0/s0/vechai-03_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/--P4Dyng9s0U/VFt_mF_ig4I/AAAAAAABgRU/xkw39rBT9gw/s0/vechai-04_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-avi4eU2A0Jg/VFt_oLdfIMI/AAAAAAABgRc/cAKBV9jUEbc/s0/vechai-05_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-D6S3-w6-nsQ/VFt_qtD2nUI/AAAAAAABgRk/LCLq2Q9TvQk/s0/vechai-06_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-l3pc4gGVGkU/VFt_ss0M9RI/AAAAAAABgRs/MgP18c2rSjw/s0/vechai-07_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-983tLsCCVKI/VFt_uhS8KUI/AAAAAAABgR0/Yunkl40uYWM/s0/vechai-08_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-J-cFRtclNvY/VFt_woFevYI/AAAAAAABgR8/CoPIwrysMmo/s0/vechai-09_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-3bz4Ejg4znM/VFt_yqBqDnI/AAAAAAABgSE/FubkcAumtPs/s0/vechai-10_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-CGo2x1haSKw/VFt_0gjj2oI/AAAAAAABgSM/3jA47YhETvM/s0/vechai-11_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-z4jipVe9hFQ/VFt_2uvr5aI/AAAAAAABgSU/EOJVLIlGfg4/s0/vechai-12_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-EI3Rx8ajp1s/VFt_5qrcYyI/AAAAAAABgSc/uDGb6FbBkNE/s0/vechai-13_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-HfrZwf3OqC8/VFt_8bMmmQI/AAAAAAABgSk/qN_u7NnUqZw/s0/vechai-14_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-dJriqom1Cn0/VFt__pmkx6I/AAAAAAABgSs/c6DUVNuvIvw/s0/vechai-15_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-SLXOdpJNWyo/VFuAHBzttmI/AAAAAAABgS0/09kMhKIqq38/s0/vechai-16_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-kVtvl4jB9J8/VFuAJFq4XpI/AAAAAAABgS8/CdSRFVXOmGI/s0/vechai-17_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-wQ0ZKpKWklI/VFuALZWnlTI/AAAAAAABgTE/dLSA0_iHOvg/s0/vechai-18_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-3H5GZfRTHfo/VFuANVmlu_I/AAAAAAABgTM/SoANWNKpy0k/s0/vechai-19_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/--4O3916aSKE/VFuAP0C4PkI/AAAAAAABgTU/jr05DqyniTs/s0/vechai-20_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-TIN37hRrd88/VFuASm5dTkI/AAAAAAABgTc/VqX7-yh8tw0/s0/vechai-21_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-8t1zIxqM1dA/VFuOR7MhgSI/AAAAAAABgZY/MXcF82n3UC4/s0/vechai-22_copy.jpg</item>
+        <item>http://1.bp.blogspot.com/-IqMAfgCflm0/VFuAWAiQJRI/AAAAAAABgTs/aABICSb91Ik/s0/vechai-23.jpg</item>
+        
+    </string-array>
+</resources>
