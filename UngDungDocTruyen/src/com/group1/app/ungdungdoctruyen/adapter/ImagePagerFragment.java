@@ -114,7 +114,7 @@ public class ImagePagerFragment extends Fragment {
 			View imageLayout = inflater.inflate(R.layout.item_pager_image, view, false);
 			assert imageLayout != null;
 			ImageViewTouch imageView = (ImageViewTouch) imageLayout.findViewById(R.id.image);
-			imageView.setDisplayType(DisplayType.FIT_IF_BIGGER);
+			imageView.setDisplayType(DisplayType.FIT_TO_SCREEN);
 			final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
 
 			ImageLoader.getInstance().displayImage(arrImg.get(position).toString(), imageView, options, new SimpleImageLoadingListener() {
