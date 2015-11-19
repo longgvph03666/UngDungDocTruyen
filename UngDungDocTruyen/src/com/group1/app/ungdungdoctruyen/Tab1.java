@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.group1.app.ungdungdoctruyen.objects.RssObject;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,7 +35,7 @@ public class Tab1 extends Fragment{
 	
 	ListView lvTypeEcomic;
 	ArrayAdapter<String> adapter;
-	public static ArrayList<RSS_Object> arrlData;
+	public static ArrayList<RssObject> arrlData;
 	
 	String[] arrTitle = new String[10];
 	String[] arrDate = new String[10];
@@ -43,7 +45,7 @@ public class Tab1 extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.activity_tab1, container, false);
-		arrlData = new ArrayList<RSS_Object>();
+		arrlData = new ArrayList<RssObject>();
 		lvTypeEcomic = (ListView) v.findViewById(R.id.lvTypeEcomic);
 		
 		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrTypeEcomic);
@@ -121,7 +123,7 @@ public class Tab1 extends Fragment{
 						String images = ((Element) item)
 								.getElementsByTagName("description").item(0)
 								.getTextContent();
-						RSS_Object object_RSS = new RSS_Object(title, link,
+						RssObject object_RSS = new RssObject(title, link,
 								date, getSrcImages(images));
 						arrlData.add(object_RSS);
 

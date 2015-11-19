@@ -1,5 +1,8 @@
-package com.group1.app.ungdungdoctruyen;
+package com.group1.app.ungdungdoctruyen.adapter;
 
+import com.group1.app.ungdungdoctruyen.R;
+import com.group1.app.ungdungdoctruyen.R.id;
+import com.group1.app.ungdungdoctruyen.R.layout;
 import com.group1.app.ungdungdoctruyen.rss.Rss_LoadImages;
 
 import android.app.Activity;
@@ -10,12 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Rss_customlv extends ArrayAdapter<String>{
+public class RssCustomLv extends ArrayAdapter<String>{
 	Activity context;
 	String [] title;
 	String [] date;
 	String [] link;
-	public Rss_customlv(Activity context, String [] title, String [] date,
+	public RssCustomLv(Activity context, String [] title, String [] date,
 			String [] link) {
 		super(context, R.layout.activity_custom_lv, title);
 		this.context = context;

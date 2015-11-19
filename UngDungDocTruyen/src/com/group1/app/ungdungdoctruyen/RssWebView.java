@@ -10,7 +10,7 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class Rss_Webview extends Activity {
+public class RssWebView extends Activity {
 	WebView webView;
 	String url;
 

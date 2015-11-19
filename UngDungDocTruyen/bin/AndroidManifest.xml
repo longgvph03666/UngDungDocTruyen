@@ -17,9 +17,9 @@
         android:allowBackup="true"
         android:icon="@drawable/icon_app"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/custom_actionbar_style" 
-         android:largeHeap="true">
+        android:theme="@style/custom_actionbar_style" >
         <activity
             android:name="com.group1.app.ungdungdoctruyen.MainActivity"
             android:label="@string/app_name" >
@@ -54,7 +54,7 @@
             android:label="@string/title_activity_rss_book__detail" >
         </activity>
         <activity
-            android:name="com.group1.app.ungdungdoctruyen.Rss_Webview"
+            android:name="com.group1.app.ungdungdoctruyen.RssWebView"
             android:label="@string/title_activity_rss__webview" >
         </activity>
         <activity
@@ -76,6 +76,14 @@
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ReadMangaOnlineActivity"
             android:label="@string/title_activity_read_manga_online" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.ActivityErrorNetwork"
+            android:label="Lỗi mạng" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.ListLikeMangaActivity"
+            android:label="@string/title_activity_list_like_manga" >
         </activity>
     </application>
 

@@ -5,12 +5,28 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Tab3" >
-    
-    <EditText 
-        android:id="@+id/edtsearch"
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nhập tên truyện cần tìm"/>
+        android:layout_height="wrap_content" >
+
+        <EditText
+            android:id="@+id/edtsearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nhập tên truyện cần tìm"
+            android:maxLines="1" />
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/icon_delete" />
+
+    </FrameLayout>
+
     <ListView
         android:id="@+id/custom_list"
         android:layout_width="fill_parent"

@@ -14,26 +14,29 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.group1.app.ungdungdoctruyen.Tab3.DoGetRss;
 import com.group1.app.ungdungdoctruyen.adapter.ChapterAdapter;
-import com.group1.app.ungdungdoctruyen.adapter.ListMangaAdapter;
 import com.group1.app.ungdungdoctruyen.items.ChapterItems;
-import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
 import com.group1.app.ungdungdoctruyen.items.MangaInforItems;
 import com.group1.app.ungdungdoctruyen.loadimg.ImageLoader;
 
@@ -47,9 +50,9 @@ public class MangaInforActivity extends Activity {
     ArrayList<MangaInforItems> arrManga;
     ArrayList<ChapterItems> arrChapter;
     ImageLoader imageLoader;
-
+    Button btnLike;
     int position;
-   
+   SQLiteDatabase database;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -64,8 +67,9 @@ public class MangaInforActivity extends Activity {
 		tvGenre = (TextView) findViewById(R.id.infoGenre);
 		tvMangaName = (TextView) findViewById(R.id.infoName);
 		tvSummary = (TextView) findViewById(R.id.infoSummary);
+		btnLike = (Button) findViewById(R.id.infoButton);
 		lv = (ListView) findViewById(R.id.listChap);
-	
+	    database = openOrCreateDatabase("mydata.db",SQLiteDatabase.CREATE_IF_NECESSARY,null);
 		imageLoader =new ImageLoader(getBaseContext());
 		
 		Intent intent = getIntent();
@@ -76,7 +80,7 @@ public class MangaInforActivity extends Activity {
 		
 		  new DoGetRss().execute();
 		// new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl());
-		
+		 
 		arrChapter =new ArrayList<ChapterItems>();
 		new DoGetChapter().execute();
 		//ArrayAdapter<String > adapter = new ArrayAdapter<String>(getBaseContext(), android.R.layout.simple_list_item_1,myResArray);
@@ -103,6 +107,25 @@ public class MangaInforActivity extends Activity {
 	}	
 	
 	
+	public boolean checkName(String _username) throws SQLException {
+	    int count = -1;
+	    Cursor c = null; 
+	    
+	       String query = "SELECT * FROM tblLike WHERE Name = ?";
+	       c = database.rawQuery(query, new String[] {_username});
+	       if (c.moveToFirst()) {
+	          count = c.getInt(0);
+	          return true;
+	       }
+	      
+	    
+	   
+	       else  {
+	          c.close();
+	         return false;
+	       }
+	    
+	}
 
 	
 	class DoGetRss extends AsyncTask<Void, Void, Void>{
@@ -148,7 +171,36 @@ public class MangaInforActivity extends Activity {
 			tvGenre.setText(arrManga.get(position).getGenre().toString());
 			tvMangaName.setText(arrManga.get(position).getMangaName().toString());
 			tvSummary.setText(arrManga.get(position).getSummary().toString());
-			imageLoader.DisplayImage(arrManga.get(position).getUrl().toString(),imgCover);		
+			//imageLoader.DisplayImage(arrManga.get(position).getUrl().toString(),imgCover);
+			new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl().toString());
+			 if(checkName(arrManga.get(position).getMangaName().toString())){
+				  btnLike.setText("Dislike");
+			  }
+			  else{
+				  btnLike.setText("Like");
+			  }
+			   btnLike.setOnClickListener(new OnClickListener() {
+					String name = arrManga.get(position).getMangaName().toString();
+					@Override
+					public void onClick(View v) {
+						// TODO Auto-generated method stub
+						 if(checkName(arrManga.get(position).getMangaName().toString())){
+							  btnLike.setText("Like");
+							  database.delete("tblLike","Name = ?",new String []{name} );
+						  }
+						  else{
+							  
+							  ContentValues values = new ContentValues();
+							  values.put("Name",arrManga.get(position).getMangaName().toString());
+							  values.put("urlImg",arrManga.get(position).getUrl().toString());
+							  values.put("author",arrManga.get(position).getAuthor().toString());
+							  values.put("type", arrManga.get(position).getGenre().toString());
+							  values.put("position",String.valueOf(position));
+							  database.insert("tblLike", null, values);
+							  btnLike.setText("Dislike");
+						  }
+					}
+				});
 		}
 		}	
 	class DoGetChapter extends AsyncTask<Void, Void, Void>{
@@ -202,6 +254,8 @@ public class MangaInforActivity extends Activity {
 		            + (lv.getDividerHeight() * (listAdapter.getCount() - 1));
 		    
 		    lv.setLayoutParams(params);
+		    
+		 
 		}
 		}	
 }

@@ -42,7 +42,7 @@ public class Tabs_Selector extends FragmentPagerAdapter{
                 return "Trang chủ";
             case 2:
 
-                return "Ưa thích";
+                return "Danh sách";
         }
         return null;
     }

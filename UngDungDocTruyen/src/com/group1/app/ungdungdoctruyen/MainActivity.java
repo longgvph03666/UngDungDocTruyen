@@ -1,17 +1,24 @@
 package com.group1.app.ungdungdoctruyen;
 import java.util.ArrayList;
-import android.support.v4.app.Fragment;
+import java.util.Locale;
+
 import android.annotation.SuppressLint;
 import android.app.FragmentManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -26,6 +33,7 @@ import android.widget.Toast;
 
 import com.group1.app.ungdungdoctruyen.adapter.NavDrawerListAdapter;
 import com.group1.app.ungdungdoctruyen.items.NavDrawerItem;
+import com.group1.app.ungdungdoctruyen.objects.RssObject;
 
 @SuppressLint("NewApi")
 public class MainActivity extends FragmentActivity {
@@ -33,12 +41,17 @@ public class MainActivity extends FragmentActivity {
 	PagerTabStrip tab_strp;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
+	private int i = 0;
+	  SQLiteDatabase database;
 	private ActionBarDrawerToggle mDrawerToggle;
+	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
 	final String[] fragments ={
 			"com.group1.app.ungdungdoctruyen.Tab1",
 			"com.example.navigationdrawer.FragmentTwo",
 			"com.example.navigationdrawer.FragmentThree"};
-
+	
+	BroadcastReceiver broadcastReceiver;
+	boolean network = false;
 	// nav drawer title
 	private CharSequence mDrawerTitle;
 
@@ -56,16 +69,16 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Tabs_Selector mapager = new Tabs_Selector(getSupportFragmentManager());
-		viewPager = (ViewPager) findViewById(R.id.pager);
-
-		viewPager.setAdapter(mapager);
-		tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
-		tab_strp.setTextColor(Color.WHITE);
-		viewPager.setCurrentItem(1);
-
+		listenNetwork();
+		getDatabase();
+		Cursor c = database.query("tblLike",null,null,null,null,null,null);
+		c.moveToFirst();
+		while(!c.isAfterLast()){
+			i++;
+			c.moveToNext();
+		}
 		mTitle = mDrawerTitle = getTitle();
-
+    
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -90,7 +103,7 @@ public class MainActivity extends FragmentActivity {
 				.getResourceId(2, -1)));
 		// Communities, Will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons
-				.getResourceId(3, -1), true, "22"));
+				.getResourceId(3, -1), true, String.valueOf(i)));
 		// Pages
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons
 				.getResourceId(4, -1)));
@@ -150,6 +163,9 @@ public class MainActivity extends FragmentActivity {
 //			startActivity(intent);
 		}
 		
+		new RssLoadData().execute();
+		arrlData  = RssLoadData.arrlData;
+		
 	}
 
 	private class SlideMenuClickListener implements
@@ -157,8 +173,7 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			      Intent intent = new Intent(getBaseContext(),OpenFileActivity.class);
-			      startActivity(intent);
+			               displayView(position);
 
 					}
 	}
@@ -166,21 +181,18 @@ public class MainActivity extends FragmentActivity {
 	@SuppressLint("NewApi")
 	private void displayView(int position) {
 		// update the main content by replacing fragments
-	  Fragment fragment = null;
-		if (fragment != null) {
-			FragmentManager fragmentManager = getFragmentManager();
-			/*fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-*/
-			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-			mDrawerLayout.closeDrawer(mDrawerList);
-		} else {
-			// error in creating fragment
-			Log.e("MainActivity", "Error in creating fragment");
-		}
+	 switch(position){
+	     case 3: {
+	    	  Intent intent = new Intent(getBaseContext(),ListLikeMangaActivity.class);
+		      startActivity(intent);
+		      break;
+	     }
+	     case 5 :{
+	    	  Intent intent = new Intent(getBaseContext(),OpenFileActivity.class);
+		      startActivity(intent);
+		      break;
+	     }
+	 }
 	}
 
 	@Override
@@ -238,7 +250,84 @@ public class MainActivity extends FragmentActivity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    return netInfo != null && netInfo.isConnectedOrConnecting();
+	}
+	 public Boolean checkTable(SQLiteDatabase database,String tableName){
+	    	Cursor c = database.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'",null);
+	    	
+	    	if(c!=null){
+	    		if(c.getCount()>0){
+	    			c.close();
+	    			return true;
+	    		}
+	    	}
+	    	return false;
+	    }
+	 
+	 public SQLiteDatabase getDatabase(){
+			database = openOrCreateDatabase("mydata.db",SQLiteDatabase.CREATE_IF_NECESSARY, null);
+			if(database!=null){
+				if(checkTable(database,"tblLike")){
+					return database;
+					}
+					 database.setLocale(Locale.getDefault());
+		    		 database.setVersion(1);
+		    		 String lopString = "create table tblLike(Name NVARCHAR primary key,urlImg NVARCHAR,author NVARCHAR,type NVARCHAR,position NVARCHAR)";
+		    		 database.execSQL(lopString);
+		    		String Student = "create table tblChapDownLoad(Chap text primary key)";
+		    		database.execSQL(Student);
+		    		//Toast.makeText(getBaseContext(),"Tạo CSDL thành công",Toast.LENGTH_SHORT).show();
+				}
+			return database;
+		}
+	public void listenNetwork(){
+		broadcastReceiver = new BroadcastReceiver() {
 
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+				NetworkInfo networkInfo = connectivityManager
+						.getActiveNetworkInfo();
+
+				if (networkInfo != null && networkInfo.isConnected()) {
+					network = true;
+					TabsSelector mapager = new TabsSelector(getSupportFragmentManager());
+					viewPager = (ViewPager) findViewById(R.id.pager);
+
+					viewPager.setAdapter(mapager);
+					tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
+					tab_strp.setTextColor(Color.WHITE);
+					viewPager.setCurrentItem(1);
+				} else {
+					if (isOnline()) {
+						
+						TabsSelector mapager = new TabsSelector(getSupportFragmentManager());
+						viewPager = (ViewPager) findViewById(R.id.pager);
+
+						viewPager.setAdapter(mapager);
+						tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
+						tab_strp.setTextColor(Color.WHITE);
+						viewPager.setCurrentItem(1);
+						
+					}else{
+						Intent it = new Intent(MainActivity.this, ActivityErrorNetwork.class);
+						startActivity(it);
+						overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+					}
+
+				}
+			}
+		};
+
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+		registerReceiver(broadcastReceiver, filter);
+	}
 
 
 }

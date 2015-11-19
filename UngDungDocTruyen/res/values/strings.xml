@@ -149,7 +149,8 @@
     <string name="title_activity_read_manga">ReadMangaActivity</string>
     <string name="title_activity_ecomic__type">Ecomic_Type</string>
     <string name="title_activity_read_manga_online">ReadMangaOnlineActivity</string>
-<string-array name="images_arrays">
+
+    <string-array name="images_arrays">
         <item>http://1.bp.blogspot.com/-lsZ6EyY2lMk/VFt_fpb6G6I/AAAAAAABgQ8/dnyNSbhwHOw/s0/vechai-01.jpg</item>
         <item>http://1.bp.blogspot.com/-yxYJrWwG_fo/VFt_hoK8slI/AAAAAAABgRE/B_Fclgkk7Vw/s0/vechai-02_copy.jpg</item>
         <item>http://1.bp.blogspot.com/-fAVFtYJWMbM/VFt_j00gZnI/AAAAAAABgRM/VryAujsKHT0/s0/vechai-03_copy.jpg</item>
@@ -173,6 +174,9 @@
         <item>http://1.bp.blogspot.com/-TIN37hRrd88/VFuASm5dTkI/AAAAAAABgTc/VqX7-yh8tw0/s0/vechai-21_copy.jpg</item>
         <item>http://1.bp.blogspot.com/-8t1zIxqM1dA/VFuOR7MhgSI/AAAAAAABgZY/MXcF82n3UC4/s0/vechai-22_copy.jpg</item>
         <item>http://1.bp.blogspot.com/-IqMAfgCflm0/VFuAWAiQJRI/AAAAAAABgTs/aABICSb91Ik/s0/vechai-23.jpg</item>
-        
     </string-array>
+
+    <string name="title_activity_activity_error_network">ActivityErrorNetwork</string>
+    <string name="title_activity_list_like_manga">ListLikeMangaActivity</string>
+
 </resources>

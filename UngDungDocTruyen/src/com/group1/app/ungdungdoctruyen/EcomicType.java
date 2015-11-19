@@ -1,22 +1,35 @@
 package com.group1.app.ungdungdoctruyen;
 
+import com.group1.app.ungdungdoctruyen.adapter.RssCustomLv;
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class EcomicType extends Activity {
+	BroadcastReceiver broadcastReceiver;
+	boolean network = false;
 	ListView lvEcomicType;
+	String[] arrTypeEcomic = { "18+", "Comedy", "Horror", "Action", "Anime",
+			"Trinh thám", "Truyện full", "Romance", "VN comic", "School life",
+			"Super Natural", "Người lớn" };
 	
 	String[] arrTitle = new String[10];
 	String[] arrDate = new String[10];
 	String[] arrLink = new String[10];
 	String[] arrURL = new String[10];
 	
-	Rss_customlv adapter;
+	RssCustomLv adapter;
 	int index1;
 	
 	@Override
@@ -24,9 +37,11 @@ public class EcomicType extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ecomic_type);
 		lvEcomicType = (ListView) findViewById(R.id.lvEcomicType);
+		listenNetwork();
 		
 		Intent it = getIntent();
 		int index = it.getIntExtra("index", MODE_PRIVATE);
+		this.setTitle(arrTypeEcomic[index]);
 		switch (index) {
 		case 0:
 			index1 = 0;
@@ -72,7 +87,7 @@ public class EcomicType extends Activity {
 			arrURL[i] = Tab1.arrlData.get(i+index1).getImages();
 		}
 		
-		adapter = new Rss_customlv(EcomicType.this, arrTitle, arrDate, arrURL);
+		adapter = new RssCustomLv(EcomicType.this, arrTitle, arrDate, arrURL);
 		lvEcomicType.setAdapter(adapter);
 		
 		lvEcomicType.setOnItemClickListener(new OnItemClickListener() {
@@ -80,9 +95,10 @@ public class EcomicType extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent it = new Intent(EcomicType.this, Rss_Webview.class);
+				Intent it = new Intent(EcomicType.this, RssWebView.class);
 				it.putExtra("link", arrLink[arg2]);
 				startActivity(it);
+				overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
 			}
 		});
 		
@@ -94,6 +110,46 @@ public class EcomicType extends Activity {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
 		overridePendingTransition(R.animator.push_down_in, R.animator.push_down_out);
+	}
+	
+	public void listenNetwork(){
+		broadcastReceiver = new BroadcastReceiver() {
+
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+				NetworkInfo networkInfo = connectivityManager
+						.getActiveNetworkInfo();
+
+				if (networkInfo != null && networkInfo.isConnected()) {
+					network = true;
+					String netWork = "Loading ...";
+					Toast.makeText(getApplicationContext(), netWork,
+							Toast.LENGTH_LONG).show();
+				} else {
+//					AlertDialog alertDialog = new AlertDialog.Builder(
+//							EcomicType.this).create();
+//					alertDialog.setTitle("Thông báo");
+//					alertDialog
+//							.setMessage("Không có kết nối mạng. Mời bạn quay lại sau !!!");
+//					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+//							new DialogInterface.OnClickListener() {
+//								public void onClick(DialogInterface dialog,
+//										int which) {
+//									onBackPressed();
+//								}
+//							});
+//					alertDialog.show();
+					Intent it = new Intent(EcomicType.this, ActivityErrorNetwork.class);
+					startActivity(it);
+					overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+				}
+			}
+		};
+
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+		registerReceiver(broadcastReceiver, filter);
 	}
 
 }

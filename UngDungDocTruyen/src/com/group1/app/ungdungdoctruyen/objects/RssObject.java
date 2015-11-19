@@ -1,9 +1,9 @@
-package com.group1.app.ungdungdoctruyen;
+package com.group1.app.ungdungdoctruyen.objects;
 
 
-public class RSS_Object {
+public class RssObject {
 	private String title, link, date, images;
-	public RSS_Object(String title, String link, String date, String images){
+	public RssObject(String title, String link, String date, String images){
 		this.title = title;
 		this.link = link;
 		this.date = date;

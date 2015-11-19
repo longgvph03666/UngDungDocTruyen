@@ -19,17 +19,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
-
-
-
 
 import com.group1.app.ungdungdoctruyen.adapter.ListMangaAdapter;
 import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
@@ -37,6 +35,7 @@ import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
 
 public class Tab3 extends Fragment {
 	EditText edtSearch;
+	ImageView ivDelete;
 	ListMangaAdapter adapter; 
 	 ListView listView;
 	 ArrayList<ListMangaItems> arrayMangas = new ArrayList<ListMangaItems>();
@@ -48,6 +47,8 @@ public class Tab3 extends Fragment {
 
 	     listView   = (ListView) v.findViewById(R.id.custom_list);
 	        edtSearch = (EditText) v.findViewById(R.id.edtsearch);
+	        ivDelete = (ImageView) v.findViewById(R.id.ivDelete);
+	        
 	        new DoGetRss().execute();
 	        listView.setOnItemClickListener(new OnItemClickListener() {
 
@@ -82,6 +83,14 @@ public class Tab3 extends Fragment {
 				public void afterTextChanged(Editable s) {
 					// TODO Auto-generated method stub
 					
+				}
+			});
+	        
+	        ivDelete.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					edtSearch.setText("");
 				}
 			});
 		return v;
