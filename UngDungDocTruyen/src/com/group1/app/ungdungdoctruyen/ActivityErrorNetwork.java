@@ -9,35 +9,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.Button;
 
 public class ActivityErrorNetwork extends Activity {
 	BroadcastReceiver broadcastReceiver;
 	boolean network = false;
+	Button btTry;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activity_error_network);
-		
-		broadcastReceiver = new BroadcastReceiver() {
-
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-				NetworkInfo networkInfo = connectivityManager
-						.getActiveNetworkInfo();
-
-				if (networkInfo != null && networkInfo.isConnected()) {
-					network = true;
-					finish();
-				} 
-				//new xuLyRss().execute();
-			}
-		};
-
-		IntentFilter filter = new IntentFilter();
-		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-		registerReceiver(broadcastReceiver, filter);
-		
+		checkNetwork();
 		
 	}
 
@@ -54,5 +36,27 @@ public class ActivityErrorNetwork extends Activity {
 		Intent it = new Intent(ActivityErrorNetwork.this, MainActivity.class);
 		startActivity(it);
 		overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+	}
+	
+	public void checkNetwork(){
+		broadcastReceiver = new BroadcastReceiver() {
+
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+				NetworkInfo networkInfo = connectivityManager
+						.getActiveNetworkInfo();
+
+				if (networkInfo != null && networkInfo.isConnected()) {
+					network = true;
+					finish();
+				} 
+				
+			}
+		};
+
+		IntentFilter filter = new IntentFilter();
+		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
+		registerReceiver(broadcastReceiver, filter);
 	}
 }

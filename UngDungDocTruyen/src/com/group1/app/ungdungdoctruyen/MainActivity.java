@@ -3,9 +3,10 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
@@ -17,12 +18,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -39,6 +38,7 @@ import com.group1.app.ungdungdoctruyen.objects.RssObject;
 public class MainActivity extends FragmentActivity {
 	ViewPager viewPager;
 	PagerTabStrip tab_strp;
+	TabsSelector mapager;
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private int i = 0;
@@ -51,7 +51,7 @@ public class MainActivity extends FragmentActivity {
 			"com.example.navigationdrawer.FragmentThree"};
 	
 	BroadcastReceiver broadcastReceiver;
-	boolean network = false;
+	public static boolean network = false;
 	// nav drawer title
 	private CharSequence mDrawerTitle;
 
@@ -69,6 +69,10 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		mapager = new TabsSelector(getSupportFragmentManager());
+		viewPager = (ViewPager) findViewById(R.id.pager);
+		
 		listenNetwork();
 		getDatabase();
 		Cursor c = database.query("tblLike",null,null,null,null,null,null);
@@ -296,29 +300,31 @@ public class MainActivity extends FragmentActivity {
 
 				if (networkInfo != null && networkInfo.isConnected()) {
 					network = true;
-					TabsSelector mapager = new TabsSelector(getSupportFragmentManager());
-					viewPager = (ViewPager) findViewById(R.id.pager);
-
+					
 					viewPager.setAdapter(mapager);
 					tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
 					tab_strp.setTextColor(Color.WHITE);
 					viewPager.setCurrentItem(1);
 				} else {
-					if (isOnline()) {
-						
-						TabsSelector mapager = new TabsSelector(getSupportFragmentManager());
-						viewPager = (ViewPager) findViewById(R.id.pager);
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							MainActivity.this).create();
+					alertDialog.setTitle("Thông báo");
+					alertDialog
+							.setMessage("Bạn sẽ không thể đọc truyện online được nếu như không có mạng !");
+					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+									network = false;
 
-						viewPager.setAdapter(mapager);
-						tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
-						tab_strp.setTextColor(Color.WHITE);
-						viewPager.setCurrentItem(1);
-						
-					}else{
-						Intent it = new Intent(MainActivity.this, ActivityErrorNetwork.class);
-						startActivity(it);
-						overridePendingTransition(R.animator.fadein, R.animator.fadeout);
-					}
+									viewPager.setAdapter(mapager);
+									tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
+									tab_strp.setTextColor(Color.WHITE);
+									viewPager.setCurrentItem(1);
+								}
+							});
+					alertDialog.show();
 
 				}
 			}

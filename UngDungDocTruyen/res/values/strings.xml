@@ -53,7 +53,7 @@
 
     <string name="title_activity_rss_book_index">RssBook_index</string>
     <string name="title_activity_rss_book__detail">RssBook_Detail</string>
-    <string name="title_activity_rss__webview">Báo điện tử</string>
+    <string name="title_activity_rss__webview">Truyện tranh điện tử</string>
 
     <array name="images_array">
         <item>http://levietan.5gbfree.com/naruto.png</item>

@@ -24,10 +24,10 @@ public class EcomicType extends Activity {
 			"Trinh thám", "Truyện full", "Romance", "VN comic", "School life",
 			"Super Natural", "Người lớn" };
 	
-	String[] arrTitle = new String[10];
-	String[] arrDate = new String[10];
-	String[] arrLink = new String[10];
-	String[] arrURL = new String[10];
+	String[] arrTitle = new String[20];
+	String[] arrDate = new String[20];
+	String[] arrLink = new String[20];
+	String[] arrURL = new String[20];
 	
 	RssCustomLv adapter;
 	int index1;
@@ -80,7 +80,7 @@ public class EcomicType extends Activity {
 //			index1 = 220;
 //			index2 = index1 + 18;
 		}
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			arrTitle[i] = Tab1.arrlData.get(i+index1).getTitle();
 			arrDate[i] = Tab1.arrlData.get(i+index1).getDate();
 			arrLink[i] = Tab1.arrlData.get(i+index1).getLink();
@@ -95,10 +95,17 @@ public class EcomicType extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent it = new Intent(EcomicType.this, RssWebView.class);
-				it.putExtra("link", arrLink[arg2]);
-				startActivity(it);
-				overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+				if (network) {
+					Intent it = new Intent(EcomicType.this, RssWebView.class);
+					it.putExtra("link", arrLink[arg2]);
+					startActivity(it);
+					overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+				}else{
+					Intent it = new Intent(EcomicType.this, ActivityErrorNetwork.class);
+					startActivity(it);
+					overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+				}
+				
 			}
 		});
 		
@@ -123,26 +130,8 @@ public class EcomicType extends Activity {
 
 				if (networkInfo != null && networkInfo.isConnected()) {
 					network = true;
-					String netWork = "Loading ...";
-					Toast.makeText(getApplicationContext(), netWork,
-							Toast.LENGTH_LONG).show();
 				} else {
-//					AlertDialog alertDialog = new AlertDialog.Builder(
-//							EcomicType.this).create();
-//					alertDialog.setTitle("Thông báo");
-//					alertDialog
-//							.setMessage("Không có kết nối mạng. Mời bạn quay lại sau !!!");
-//					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//							new DialogInterface.OnClickListener() {
-//								public void onClick(DialogInterface dialog,
-//										int which) {
-//									onBackPressed();
-//								}
-//							});
-//					alertDialog.show();
-					Intent it = new Intent(EcomicType.this, ActivityErrorNetwork.class);
-					startActivity(it);
-					overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+					network = false;
 				}
 			}
 		};

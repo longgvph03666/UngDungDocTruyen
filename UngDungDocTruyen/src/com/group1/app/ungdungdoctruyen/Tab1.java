@@ -13,8 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.group1.app.ungdungdoctruyen.objects.RssObject;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,6 +28,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.group1.app.ungdungdoctruyen.objects.RssObject;
+
 public class Tab1 extends Fragment{
 	String[] arrTypeEcomic = { "18+", "Comedy", "Horror", "Action", "Anime",
 			"Trinh thám", "Truyện full", "Romance", "VN comic", "School life",
@@ -37,10 +39,10 @@ public class Tab1 extends Fragment{
 	ArrayAdapter<String> adapter;
 	public static ArrayList<RssObject> arrlData;
 	
-	String[] arrTitle = new String[10];
-	String[] arrDate = new String[10];
-	String[] arrLink = new String[10];
-	String[] arrURL = new String[10];
+	String[] arrTitle = new String[20];
+	String[] arrDate = new String[20];
+	String[] arrLink = new String[20];
+	String[] arrURL = new String[20];
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -56,10 +58,26 @@ public class Tab1 extends Fragment{
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				Intent it = new Intent(getActivity(), EcomicType.class);
-				it.putExtra("index", arg2);
-				startActivity(it);
-				getActivity().overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+				if (MainActivity.network) {
+					Intent it = new Intent(getActivity(), EcomicType.class);
+					it.putExtra("index", arg2);
+					startActivity(it);
+					getActivity().overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+				}else{
+					AlertDialog alertDialog = new AlertDialog.Builder(
+							getActivity()).create();
+					alertDialog.setTitle("Thông báo");
+					alertDialog
+							.setMessage("Không có kết nối mạng. Mời bạn quay lại sau !!!");
+					alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog,
+										int which) {
+									dialog.cancel();
+								}
+							});
+					alertDialog.show();
+				}
 			}
 		});
 		
@@ -127,12 +145,6 @@ public class Tab1 extends Fragment{
 								date, getSrcImages(images));
 						arrlData.add(object_RSS);
 
-						Log.d("RSS", "XML title : " + title);
-						Log.d("RSS", "XML link : " + link);
-						Log.d("RSS", "XML date : " + date);
-						Log.d("RSS", "XML description : " + getSrcImages(images));
-						Log.d("RSS", "XML ---------------------------------- : ");
-
 					}
 					Log.d("RSS SIZE", "Size : " + arrlData.size() + "");
 				} catch (Exception e) {
@@ -149,4 +161,6 @@ public class Tab1 extends Fragment{
 		}
 
 	}
+	
+	
 }

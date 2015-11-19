@@ -8,12 +8,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ActivityErrorNetwork" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <Button
+        android:id="@+id/btTry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Kiểm tra kết nối mạng !"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:text="Thử lại" />
+
+     <TextView
+         android:id="@+id/tvErrorNetwork"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/btTry"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="21dp"
+         android:text="Kiểm tra kết nối mạng"
+         android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>

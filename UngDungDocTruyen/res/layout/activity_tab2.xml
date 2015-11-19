@@ -30,7 +30,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" >
-						
+
                         <TextView
                             android:id="@+id/textView1"
                             android:layout_width="wrap_content"
@@ -42,8 +42,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
                     </RelativeLayout>
                 </LinearLayout>
-				
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -53,6 +52,7 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
+                        android:id="@+id/linear1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
@@ -63,9 +63,9 @@
                         <ImageView
                             android:id="@+id/iv_iconNews_1"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_1"
@@ -74,10 +74,11 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
@@ -88,9 +89,9 @@
                         <ImageView
                             android:id="@+id/iv_iconNews_2"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_2"
@@ -99,9 +100,10 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -111,19 +113,20 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
+                        android:id="@+id/linear3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_3"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_3"
@@ -132,23 +135,24 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_4"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_4"
@@ -157,7 +161,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -188,7 +192,7 @@
                             android:textAppearance="?android:attr/textAppearanceLarge" />
                     </RelativeLayout>
                 </LinearLayout>
-				
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -198,6 +202,7 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
+                        android:id="@+id/linear5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
@@ -208,9 +213,9 @@
                         <ImageView
                             android:id="@+id/iv_iconNews_5"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_5"
@@ -219,23 +224,24 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear6"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_6"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_6"
@@ -244,9 +250,10 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -256,19 +263,20 @@
                     android:orientation="horizontal" >
 
                     <LinearLayout
+                        android:id="@+id/linear7"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_7"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_7"
@@ -277,23 +285,24 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linear8"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_8"
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="70dp"
                             android:layout_marginTop="5dp"
-                            android:src="@drawable/loading3" />
+                            android:src="@drawable/loading_icon3" />
 
                         <TextView
                             android:id="@+id/tv_titleNews_8"
@@ -302,7 +311,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:maxLines="3"
-                            android:text="Title" />
+                            android:text="Loading..." />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

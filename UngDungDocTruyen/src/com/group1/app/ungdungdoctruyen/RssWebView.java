@@ -49,7 +49,7 @@ public class RssWebView extends Activity {
 		Intent myIntent = new Intent(getApplicationContext(),
 				EcomicType.class);
 		startActivityForResult(myIntent, 0);
-		overridePendingTransition(R.animator.right_current, R.animator.right_current_for_back);
+		overridePendingTransition(R.animator.fadein, R.animator.fadeout);
 		return true;
 	}
 
