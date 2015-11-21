@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.sax.StartElementListener;
 import android.util.Log;
@@ -26,8 +28,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group1.app.ungdungdoctruyen.MangaInforActivity;
+import com.group1.app.ungdungdoctruyen.OpenFileActivity;
 import com.group1.app.ungdungdoctruyen.R;
 import com.group1.app.ungdungdoctruyen.ReadMangaActivity;
 
@@ -37,14 +41,17 @@ import com.group1.app.ungdungdoctruyen.items.ChapterItems;
 
 public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 	File file ;
+	String name;
 	private ProgressDialog mProgressDialog;
 	Context context;
 	int layoutResourceId;
+	
 	ArrayList<ChapterItems> chapters = new ArrayList<ChapterItems>();
 	 private AlertDialog.Builder builder;
 	public ChapterAdapter(Context context, int layoutResourceId,
 			ArrayList<ChapterItems> chapters) {
 		super(context, layoutResourceId, chapters);
+		
 		this.layoutResourceId = layoutResourceId;
 		this.context = context;
 		this.chapters = chapters;
@@ -74,6 +81,19 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 
 			@Override
 			public void onClick(View v) {
+				String filename =chapers.getUrlDown();
+				String name = filename.substring(filename.lastIndexOf('/') + 1);
+				
+				file	= new File("/sdcard/"+name);
+				if(file.exists()){
+					Intent in = new Intent(context,
+							ReadMangaActivity.class);
+				    
+					in.putExtra("path", file.getPath());
+					context.startActivity(in);
+		          
+				}
+				else{
 				//Toast.makeText(context, student.getName().toString(), Toast.LENGTH_LONG).show();
 				final String itemDownload[] = { "Download"};
 				Log.i("TTTH", "Clicked on Item Chapter download");
@@ -92,11 +112,15 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 							mProgressDialog
 									.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 							DownloadFile downloadFile = new DownloadFile();
+						
+							
 							downloadFile.execute(chapers.getUrlDown());
 							mProgressDialog.show();
+							
 					}
 				});
 				builder.show();
+				}
 			}
 		});
 		
@@ -122,10 +146,11 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 			int count;
 			try {
 				
-			
+			    
 				String filename =params[0];
-				String fileName2 = filename.substring(filename.lastIndexOf('/') + 1);
-				file	= new File("/sdcard/"+fileName2);
+				String name = filename.substring(filename.lastIndexOf('/') + 1);
+				
+				file	= new File("/sdcard/"+name);
 				URL url = new URL(params[0]);
 				URLConnection conn = url.openConnection();
 				conn.connect();
@@ -163,8 +188,10 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			mProgressDialog.dismiss();
+			
 			Intent in = new Intent(context,
 					ReadMangaActivity.class);
+		    
 			in.putExtra("path", file.getPath());
 			context.startActivity(in);
           
