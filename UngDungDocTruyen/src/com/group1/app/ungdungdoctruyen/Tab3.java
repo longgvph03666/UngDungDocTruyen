@@ -38,18 +38,20 @@ public class Tab3 extends Fragment {
 	ImageView ivDelete;
 	ListMangaAdapter adapter; 
 	 ListView listView;
-	 ArrayList<ListMangaItems> arrayMangas = new ArrayList<ListMangaItems>();
+	 ArrayList<ListMangaItems> arrayMangas ;
+	 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		View v = inflater.inflate(R.layout.activity_tab3, container, false);
 		// final ArrayList<ListMangaItems> listData = getListData();
-
+    
 	     listView   = (ListView) v.findViewById(R.id.custom_list);
 	        edtSearch = (EditText) v.findViewById(R.id.edtsearch);
 	        ivDelete = (ImageView) v.findViewById(R.id.ivDelete);
-	        
+	      arrayMangas  = new ArrayList<ListMangaItems>();
 	        new DoGetRss().execute();
+	        
 	        listView.setOnItemClickListener(new OnItemClickListener() {
 
 	            @Override
@@ -102,6 +104,7 @@ public class Tab3 extends Fragment {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
+				arrayMangas.clear();
 				URL url = new URL("http://levietan.5gbfree.com/list_manga.xml");
 				URLConnection urlConnection = url.openConnection();
 				InputStream iS = urlConnection.getInputStream();			
@@ -133,30 +136,13 @@ public class Tab3 extends Fragment {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			
 			adapter = new ListMangaAdapter(getActivity(), arrayMangas);
 	        listView.setAdapter(adapter);
-					
 		}
 		}	
 	
 	
-	  private ArrayList<ListMangaItems> getListData() {
-	        ArrayList<ListMangaItems> listMockData = new ArrayList<ListMangaItems>();
-	        String[] images = getResources().getStringArray(R.array.images_array);
-	        String[] headlines = getResources().getStringArray(R.array.headline_array);
-	        String[] authors = getResources().getStringArray(R.array.author_array);
-	        String[] types = getResources().getStringArray(R.array.type_array);
-	        for (int i = 0; i < images.length; i++) {
-	            ListMangaItems newsData = new ListMangaItems();
-	            newsData.setUrl(images[i]);
-	            newsData.setHeadline(headlines[i]);
-	            newsData.setAuthor(authors[i]);
-	            newsData.setReporterName(types[i]);
-	            newsData.setPosition(i);
-	            newsData.setDate("May 26, 2013, 13:35");
-	            listMockData.add(newsData);
-	        }
-	        return listMockData;
-	  }
+	
 	  
 }

@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerTabStrip;
@@ -45,6 +46,14 @@ public class MainActivity extends FragmentActivity {
 	  SQLiteDatabase database;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
+	Handler handler = new Handler();
+	Runnable timedTask = new Runnable(){
+
+	    @Override
+	    public void run() {
+	       // getUrlText();
+	        handler.postDelayed(timedTask, 1000);
+	    }};
 	final String[] fragments ={
 			"com.group1.app.ungdungdoctruyen.Tab1",
 			"com.example.navigationdrawer.FragmentTwo",
@@ -285,6 +294,9 @@ public class MainActivity extends FragmentActivity {
 		    		 database.execSQL(lopString);
 		    		String Student = "create table tblChapDownLoad(Chap text primary key)";
 		    		database.execSQL(Student);
+		    		String resume = "create table tblResume(Chap text primary key,pager text)";
+		    		database.execSQL(resume);
+
 		    		//Toast.makeText(getBaseContext(),"Tạo CSDL thành công",Toast.LENGTH_SHORT).show();
 				}
 			return database;

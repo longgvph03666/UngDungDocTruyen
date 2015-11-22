@@ -14,7 +14,9 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -34,6 +36,8 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import com.group1.app.ungdungdoctruyen.adapter.ChapterAdapter;
 import com.group1.app.ungdungdoctruyen.items.ChapterItems;
@@ -52,6 +56,7 @@ public class MangaInforActivity extends Activity {
     ImageLoader imageLoader;
     Button btnLike;
     int position;
+	String pos;
    SQLiteDatabase database;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -87,17 +92,80 @@ public class MangaInforActivity extends Activity {
 		
 		
 	    lv.setOnItemClickListener(new OnItemClickListener() {
-
+            
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view,
-					int position, long id) {
+					final int position, long id) {
 				// TODO Auto-generated method stub
-				 Intent intent = new Intent(MangaInforActivity.this,ReadMangaOnlineActivity.class);
-				 intent.putExtra("url",arrChapter.get(position).getUrlOnline());
-				 startActivity(intent);
+			final String	chap = arrChapter.get(position).getUrlOnline().toString();
+				if(checkResume(chap.substring(chap.lastIndexOf('/') + 1))){
+					
+					AlertDialog.Builder b = new AlertDialog.Builder(
+							MangaInforActivity.this);
+					b.setTitle("Xem tiếp");
+					b.setMessage("Bạn có muốn xem tiếp truyện?");
+					b.setPositiveButton("Có",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+//									int n = database.delete("tbl",
+//											"StudentId=?", new String[] { student.getID() });
+									Cursor c = database.rawQuery("Select * from tblResume where Chap = ?",new String[] {chap.substring(chap.lastIndexOf('/') + 1)});
+									c.moveToFirst();
+									while(!c.isAfterLast()){
+										pos = c.getString(1);
+										c.moveToNext();
+									}
+									c.close();
+									Bundle b = new Bundle();
+                                    b.putString("url",arrChapter.get(position).getUrlOnline().toString());
+                                   
+                                    
+                                    b.putString("pager",pos);
+                                    database.delete("tblResume","Chap = ?",new String []{chap.substring(chap.lastIndexOf('/') + 1)});
+                                    Intent intent = new Intent(MangaInforActivity.this,ReadMangaOnlineActivity.class);
+                                    intent.putExtras(b);
+                                    startActivity(intent);
+								}
+							});
+					b.setNegativeButton("Xem từ đầu",
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int which) {
+									// TODO Auto-generated method stub
+									Bundle b = new Bundle();
+                                    b.putString("url",arrChapter.get(position).getUrlOnline().toString());
+                                   
+                                    pos="0";
+                                    b.putString("pager",pos);
+                                    database.delete("tblResume","Chap = ?",new String []{chap.substring(chap.lastIndexOf('/') + 1)});
+                                    Intent intent = new Intent(MangaInforActivity.this,ReadMangaOnlineActivity.class);
+                                    intent.putExtras(b);
+                                    startActivity(intent);
+								}
+							});
+					b.show();
+				
+					//Toast.makeText(getBaseContext(),"bạn có muốn đọc tiếp?",Toast.LENGTH_LONG).show();
+				}
+				else{Bundle b = new Bundle();
+                    b.putString("url",arrChapter.get(position).getUrlOnline().toString());
+					   pos="0";
+                       b.putString("pager",pos);
+                       database.delete("tblResume","Chap = ?",new String []{chap.substring(chap.lastIndexOf('/') + 1)});
+                       Intent intent = new Intent(MangaInforActivity.this,ReadMangaOnlineActivity.class);
+                       intent.putExtras(b);
+                       startActivity(intent);
+				 }
 			}
 		});
-	}
+}
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -107,12 +175,31 @@ public class MangaInforActivity extends Activity {
 	}	
 	
 	
-	public boolean checkName(String _username) throws SQLException {
+	public  boolean checkName(String _username) throws SQLException {
 	    int count = -1;
 	    Cursor c = null; 
 	    
 	       String query = "SELECT * FROM tblLike WHERE Name = ?";
 	       c = database.rawQuery(query, new String[] {_username});
+	       if (c.moveToFirst()) {
+	          count = c.getInt(0);
+	          return true;
+	       }
+	      
+	    
+	   
+	       else  {
+	          c.close();
+	         return false;
+	       }
+	    
+	}
+	public boolean checkResume(String _chap) throws SQLException {
+	    int count = -1;
+	    Cursor c = null; 
+	    
+	       String query = "SELECT * FROM tblResume WHERE Chap = ?";
+	       c = database.rawQuery(query, new String[] {_chap});
 	       if (c.moveToFirst()) {
 	          count = c.getInt(0);
 	          return true;

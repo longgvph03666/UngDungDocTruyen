@@ -19,11 +19,13 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -116,7 +118,7 @@ public class ImagePagerFragment extends Fragment {
 			ImageViewTouch imageView = (ImageViewTouch) imageLayout.findViewById(R.id.image);
 			imageView.setDisplayType(DisplayType.FIT_TO_SCREEN);
 			final ProgressBar spinner = (ProgressBar) imageLayout.findViewById(R.id.loading);
-
+                
 			ImageLoader.getInstance().displayImage(arrImg.get(position).toString(), imageView, options, new SimpleImageLoadingListener() {
 				@Override
 				public void onLoadingStarted(String imageUri, View view) {
@@ -193,7 +195,7 @@ public class ImagePagerFragment extends Fragment {
 
 					Node n1News = nListNews.item(i);
 					String imgLink = ((Element) n1News).getElementsByTagName("link").item(0).getTextContent();
-
+       
 					arrImg.add(imgLink);
 				}
 			} catch (Exception e) {
