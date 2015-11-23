@@ -34,7 +34,7 @@ import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
 
 
 public class Tab3 extends Fragment {
-	EditText edtSearch;
+	public static EditText edtSearch;
 	ImageView ivDelete;
 	ListMangaAdapter adapter; 
 	 ListView listView;

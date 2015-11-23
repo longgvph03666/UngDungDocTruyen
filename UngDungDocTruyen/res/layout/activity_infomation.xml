@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ActivityInfomation"
+    android:background="#FFFFFF" >
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/infomation_logo" 
+        android:layout_gravity="center_horizontal"/>
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phiên bản : 1.0.0" 
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="3dp"/>
+    
+    <ListView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvInfomation"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"></ListView>
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#f0f4f6">
+        
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Điều khoản sử dụng"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:textColor="#4da1cd"/>
+         <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="©2015 Sản phẩm của nhóm 1"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="#a6afb4"/>
+         <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PT10351-MOB (PRO203)"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
+            android:textColor="#a6afb4"/>
+         
+    </LinearLayout>
+
+</LinearLayout>

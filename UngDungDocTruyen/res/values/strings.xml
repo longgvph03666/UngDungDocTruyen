@@ -178,5 +178,7 @@
 
     <string name="title_activity_activity_error_network">ActivityErrorNetwork</string>
     <string name="title_activity_list_like_manga">ListLikeMangaActivity</string>
+    <string name="title_activity_activity_infomation">Thông tin</string>
+    <string name="title_activity_activity_setting">Cài đặt</string>
 
 </resources>

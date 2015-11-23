@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Giao diện" >
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_key_auto_delete"
+            android:title="Tùy chọn" />
+
+        <Preference
+            android:dependency="pref_key_auto_delete"
+            android:key="pref_key_sms_delete_limit"
+            android:summary="Nothing"
+            android:title="Màu chữ" />
+
+        <Preference
+            android:dependency="pref_key_auto_delete"
+            android:key="pref_key_mms_delete_limit"
+            android:summary="Nothing"
+            android:title="Màu nền" />
+
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_sync"
+            android:summary="Bật"
+            android:title="Theme" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

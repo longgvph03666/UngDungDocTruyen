@@ -85,6 +85,14 @@
             android:name="com.group1.app.ungdungdoctruyen.ListLikeMangaActivity"
             android:label="@string/title_activity_list_like_manga" >
         </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.OtherActivity.ActivityInfomation"
+            android:label="@string/title_activity_activity_infomation" >
+        </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.OtherActivity.ActivitySetting"
+            android:label="@string/title_activity_activity_setting" >
+        </activity>
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -31,6 +32,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.group1.app.ungdungdoctruyen.OtherActivity.ActivityInfomation;
+import com.group1.app.ungdungdoctruyen.OtherActivity.ActivitySetting;
 import com.group1.app.ungdungdoctruyen.adapter.NavDrawerListAdapter;
 import com.group1.app.ungdungdoctruyen.items.NavDrawerItem;
 import com.group1.app.ungdungdoctruyen.objects.RssObject;
@@ -195,17 +198,52 @@ public class MainActivity extends FragmentActivity {
 	private void displayView(int position) {
 		// update the main content by replacing fragments
 	 switch(position){
-	     case 3: {
-	    	  Intent intent = new Intent(getBaseContext(),ListLikeMangaActivity.class);
-		      startActivity(intent);
-		      break;
-	     }
-	     case 5 :{
-	    	  Intent intent = new Intent(getBaseContext(),OpenFileActivity.class);
-		      startActivity(intent);
-		      break;
-	     }
-	 }
+	 case 0:
+			mDrawerLayout.closeDrawer(GravityCompat.START);
+			viewPager.setCurrentItem(1);
+			break;
+		case 1:
+			
+			break;
+		case 2:
+			
+			break;
+		case 3: {
+			Intent intent = new Intent(getBaseContext(),
+					ListLikeMangaActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			break;
+		}
+		case 4:
+			mDrawerLayout.closeDrawer(GravityCompat.START);
+			viewPager.setCurrentItem(0);
+			break;
+		case 5: {
+			Intent intent = new Intent(getBaseContext(), OpenFileActivity.class);
+			startActivity(intent);
+			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			break;
+		}
+		case 6:
+			
+			break;
+		case 7:
+			{
+			Intent intent = new Intent(getBaseContext(), ActivitySetting.class);
+			startActivity(intent);
+			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			break;
+		}
+		case 8:
+			Intent intent = new Intent(getBaseContext(), ActivityInfomation.class);
+			startActivity(intent);
+			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			break;
+		case 9:
+			Toast.makeText(getApplicationContext(), "Đang xây dựng ...", Toast.LENGTH_SHORT).show();
+			break;
+		}
 	}
 
 	@Override
@@ -227,9 +265,12 @@ public class MainActivity extends FragmentActivity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
+			Toast.makeText(getApplicationContext(), "Đang xây dựng...\n Mời quay lại sau !!!", Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.action_search:
-			Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+			
+			viewPager.setCurrentItem(2);
+			Tab3.edtSearch.requestFocus();
 			return true;
 		}
 		return false;
