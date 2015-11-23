@@ -31,32 +31,35 @@ public final class R {
         public static final int up_news_for_back=0x7f040013;
     }
     public static final class array {
-        public static final int author2_array=0x7f080009;
-        public static final int author_array=0x7f080004;
-        public static final int chapter_array=0x7f080008;
-        public static final int covers_array=0x7f080007;
-        public static final int headline_array=0x7f080003;
-        public static final int images_array=0x7f080002;
-        public static final int images_arrays=0x7f08000b;
+        public static final int author2_array=0x7f05000c;
+        public static final int author_array=0x7f050007;
+        public static final int chapter_array=0x7f05000b;
+        public static final int covers_array=0x7f05000a;
+        public static final int headline_array=0x7f050006;
+        public static final int images_array=0x7f050005;
+        public static final int images_arrays=0x7f05000e;
+        public static final int listColor=0x7f050000;
+        public static final int listColorValues=0x7f050001;
+        public static final int listLanguage=0x7f050002;
         /**  Nav Drawer List Item Icons 
  Keep them in order as the titles are in 
          */
-        public static final int nav_drawer_icons=0x7f080001;
-        public static final int nav_drawer_items=0x7f080000;
-        public static final int summary_array=0x7f080006;
-        public static final int type2_array=0x7f08000a;
-        public static final int type_array=0x7f080005;
+        public static final int nav_drawer_icons=0x7f050004;
+        public static final int nav_drawer_items=0x7f050003;
+        public static final int summary_array=0x7f050009;
+        public static final int type2_array=0x7f05000d;
+        public static final int type_array=0x7f050008;
     }
     public static final class attr {
     }
     public static final class color {
-        public static final int counter_text_bg=0x7f050004;
-        public static final int counter_text_color=0x7f050005;
-        public static final int list_background=0x7f050001;
-        public static final int list_background_pressed=0x7f050002;
-        public static final int list_divider=0x7f050003;
-        public static final int list_item_title=0x7f050000;
-        public static final int red=0x7f050006;
+        public static final int counter_text_bg=0x7f060004;
+        public static final int counter_text_color=0x7f060005;
+        public static final int list_background=0x7f060001;
+        public static final int list_background_pressed=0x7f060002;
+        public static final int list_divider=0x7f060003;
+        public static final int list_item_title=0x7f060000;
+        public static final int red=0x7f060006;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -65,8 +68,8 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f070000;
+        public static final int activity_vertical_margin=0x7f070001;
     }
     public static final class drawable {
         public static final int bg1=0x7f020000;
@@ -252,39 +255,39 @@ public final class R {
         public static final int tab4=0x7f0a0010;
     }
     public static final class string {
-        public static final int action_settings=0x7f070001;
-        public static final int add_manga=0x7f070012;
-        public static final int app_name=0x7f070000;
-        public static final int desc=0x7f07000b;
-        public static final int desc_list_item_icon=0x7f070007;
-        public static final int hello_world=0x7f070002;
-        public static final int manga_author=0x7f07000d;
-        public static final int manga_chapter=0x7f07000f;
-        public static final int manga_genre=0x7f07000e;
-        public static final int manga_name=0x7f07000c;
-        public static final int manga_status=0x7f070010;
-        public static final int manga_summary=0x7f070011;
-        public static final int search=0x7f070008;
-        public static final int search_hint=0x7f070013;
-        public static final int search_settings=0x7f070014;
-        public static final int setting=0x7f070009;
-        public static final int title_activity_activity_error_network=0x7f07001d;
-        public static final int title_activity_activity_infomation=0x7f07001f;
-        public static final int title_activity_activity_setting=0x7f070020;
-        public static final int title_activity_ecomic__type=0x7f07001b;
-        public static final int title_activity_list_like_manga=0x7f07001e;
-        public static final int title_activity_manga_infor=0x7f070018;
-        public static final int title_activity_open_file=0x7f070019;
-        public static final int title_activity_read_manga=0x7f07001a;
-        public static final int title_activity_read_manga_online=0x7f07001c;
-        public static final int title_activity_rss__webview=0x7f070017;
-        public static final int title_activity_rss_book__detail=0x7f070016;
-        public static final int title_activity_rss_book_index=0x7f070015;
-        public static final int title_activity_tab1=0x7f070003;
-        public static final int title_activity_tab2=0x7f070004;
-        public static final int title_activity_tab3=0x7f070005;
-        public static final int title_activity_tab4=0x7f070006;
-        public static final int update=0x7f07000a;
+        public static final int action_settings=0x7f080001;
+        public static final int add_manga=0x7f080012;
+        public static final int app_name=0x7f080000;
+        public static final int desc=0x7f08000b;
+        public static final int desc_list_item_icon=0x7f080007;
+        public static final int hello_world=0x7f080002;
+        public static final int manga_author=0x7f08000d;
+        public static final int manga_chapter=0x7f08000f;
+        public static final int manga_genre=0x7f08000e;
+        public static final int manga_name=0x7f08000c;
+        public static final int manga_status=0x7f080010;
+        public static final int manga_summary=0x7f080011;
+        public static final int search=0x7f080008;
+        public static final int search_hint=0x7f080013;
+        public static final int search_settings=0x7f080014;
+        public static final int setting=0x7f080009;
+        public static final int title_activity_activity_error_network=0x7f08001d;
+        public static final int title_activity_activity_infomation=0x7f08001f;
+        public static final int title_activity_activity_setting=0x7f080020;
+        public static final int title_activity_ecomic__type=0x7f08001b;
+        public static final int title_activity_list_like_manga=0x7f08001e;
+        public static final int title_activity_manga_infor=0x7f080018;
+        public static final int title_activity_open_file=0x7f080019;
+        public static final int title_activity_read_manga=0x7f08001a;
+        public static final int title_activity_read_manga_online=0x7f08001c;
+        public static final int title_activity_rss__webview=0x7f080017;
+        public static final int title_activity_rss_book__detail=0x7f080016;
+        public static final int title_activity_rss_book_index=0x7f080015;
+        public static final int title_activity_tab1=0x7f080003;
+        public static final int title_activity_tab2=0x7f080004;
+        public static final int title_activity_tab3=0x7f080005;
+        public static final int title_activity_tab4=0x7f080006;
+        public static final int update=0x7f08000a;
     }
     public static final class style {
         /** 

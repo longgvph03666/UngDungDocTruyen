@@ -6,26 +6,50 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="pref_key_auto_delete"
+            android:summary="Cho phép thay đổi giao diện theo ý bạn"
             android:title="Tùy chọn" />
 
-        <Preference
+        <ListPreference
+            android:defaultValue="1"
             android:dependency="pref_key_auto_delete"
-            android:key="pref_key_sms_delete_limit"
-            android:summary="Nothing"
+            android:entries="@array/listColor"
+            android:entryValues="@array/listColorValues"
+            android:key="pref_key_mms_delete_limit"
+            android:summary="Đen"
             android:title="Màu chữ" />
 
-        <Preference
+        <ListPreference
+            android:defaultValue="2"
             android:dependency="pref_key_auto_delete"
+            android:entries="@array/listColor"
+            android:entryValues="@array/listColorValues"
             android:key="pref_key_mms_delete_limit"
-            android:summary="Nothing"
+            android:summary="Trắng"
             android:title="Màu nền" />
 
+        <SwitchPreference
+            android:key="theme"
+            android:summaryOff="Tắt"
+            android:summaryOn="Mở"
+            android:title="Giao diện tối"
+            android:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Hệ thống" >
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/listLanguage"
+            android:entryValues="@array/listColorValues"
+            android:key="pref_key_mms_delete_limit"
+            android:summary="Nhấp để chọn ngôn ngữ mà bạn dùng"
+            android:title="Ngôn ngữ" />
 
         <CheckBoxPreference
             android:defaultValue="true"
-            android:key="pref_sync"
-            android:summary="Bật"
-            android:title="Theme" />
+            android:key="key_load_image"
+            android:summary="Hãy tắt chức năng này nếu mạng của bạn yếu, không ổn định."
+            android:title="Tải ảnh" />
     </PreferenceCategory>
 
 </PreferenceScreen>

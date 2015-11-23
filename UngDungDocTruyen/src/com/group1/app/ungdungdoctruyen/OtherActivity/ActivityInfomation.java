@@ -3,11 +3,13 @@ package com.group1.app.ungdungdoctruyen.OtherActivity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.group1.app.ungdungdoctruyen.MainActivity;
 import com.group1.app.ungdungdoctruyen.R;
 
 @SuppressLint("NewApi")
@@ -38,6 +40,7 @@ public class ActivityInfomation extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (android.R.id.home == item.getItemId()) {
 			onBackPressed();
+			MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
 		}
 		return super.onOptionsItemSelected(item);
 	}

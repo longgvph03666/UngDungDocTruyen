@@ -1,4 +1,5 @@
 package com.group1.app.ungdungdoctruyen;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -9,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -18,6 +20,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -43,25 +46,25 @@ public class MainActivity extends FragmentActivity {
 	ViewPager viewPager;
 	PagerTabStrip tab_strp;
 	TabsSelector mapager;
-	private DrawerLayout mDrawerLayout;
+	public static DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private int i = 0;
-	  SQLiteDatabase database;
+	SQLiteDatabase database;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
 	Handler handler = new Handler();
-	Runnable timedTask = new Runnable(){
+	Runnable timedTask = new Runnable() {
 
-	    @Override
-	    public void run() {
-	       // getUrlText();
-	        handler.postDelayed(timedTask, 1000);
-	    }};
-	final String[] fragments ={
-			"com.group1.app.ungdungdoctruyen.Tab1",
+		@Override
+		public void run() {
+			// getUrlText();
+			handler.postDelayed(timedTask, 1000);
+		}
+	};
+	final String[] fragments = { "com.group1.app.ungdungdoctruyen.Tab1",
 			"com.example.navigationdrawer.FragmentTwo",
-			"com.example.navigationdrawer.FragmentThree"};
-	
+			"com.example.navigationdrawer.FragmentThree" };
+
 	BroadcastReceiver broadcastReceiver;
 	public static boolean network = false;
 	// nav drawer title
@@ -81,20 +84,21 @@ public class MainActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		mapager = new TabsSelector(getSupportFragmentManager());
 		viewPager = (ViewPager) findViewById(R.id.pager);
-		
+
 		listenNetwork();
 		getDatabase();
-		Cursor c = database.query("tblLike",null,null,null,null,null,null);
+		Cursor c = database
+				.query("tblLike", null, null, null, null, null, null);
 		c.moveToFirst();
-		while(!c.isAfterLast()){
+		while (!c.isAfterLast()) {
 			i++;
 			c.moveToNext();
 		}
 		mTitle = mDrawerTitle = getTitle();
-    
+
 		// load slide menu items
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
@@ -134,7 +138,7 @@ public class MainActivity extends FragmentActivity {
 		// What's hot, We will add a counter here
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons
 				.getResourceId(9, -1), true, "50+"));
-        
+
 		// Recycle the typed array
 		navMenuIcons.recycle();
 
@@ -174,14 +178,14 @@ public class MainActivity extends FragmentActivity {
 
 		if (savedInstanceState == null) {
 			// on first time display view for first nav item
-			//displayView(0);
-//			Intent intent = new Intent(getBaseContext(),MainActivity.class);
-//			startActivity(intent);
+			// displayView(0);
+			// Intent intent = new Intent(getBaseContext(),MainActivity.class);
+			// startActivity(intent);
 		}
-		
+
 		new RssLoadData().execute();
-		arrlData  = RssLoadData.arrlData;
-		
+		arrlData = RssLoadData.arrlData;
+
 	}
 
 	private class SlideMenuClickListener implements
@@ -189,30 +193,31 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			               displayView(position);
+			displayView(position);
 
-					}
+		}
 	}
-	
+
 	@SuppressLint("NewApi")
 	private void displayView(int position) {
 		// update the main content by replacing fragments
-	 switch(position){
-	 case 0:
+		switch (position) {
+		case 0:
 			mDrawerLayout.closeDrawer(GravityCompat.START);
 			viewPager.setCurrentItem(1);
 			break;
 		case 1:
-			
+
 			break;
 		case 2:
-			
+
 			break;
 		case 3: {
 			Intent intent = new Intent(getBaseContext(),
 					ListLikeMangaActivity.class);
 			startActivity(intent);
-			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			overridePendingTransition(R.animator.push_up_in,
+					R.animator.push_up_out);
 			break;
 		}
 		case 4:
@@ -222,26 +227,30 @@ public class MainActivity extends FragmentActivity {
 		case 5: {
 			Intent intent = new Intent(getBaseContext(), OpenFileActivity.class);
 			startActivity(intent);
-			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			overridePendingTransition(R.animator.push_up_in,
+					R.animator.push_up_out);
 			break;
 		}
 		case 6:
-			
+
 			break;
-		case 7:
-			{
+		case 7: {
 			Intent intent = new Intent(getBaseContext(), ActivitySetting.class);
 			startActivity(intent);
-			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			overridePendingTransition(R.animator.push_up_in,
+					R.animator.push_up_out);
 			break;
 		}
 		case 8:
-			Intent intent = new Intent(getBaseContext(), ActivityInfomation.class);
+			Intent intent = new Intent(getBaseContext(),
+					ActivityInfomation.class);
 			startActivity(intent);
-			overridePendingTransition(R.animator.push_up_in, R.animator.push_up_out);
+			overridePendingTransition(R.animator.push_up_in,
+					R.animator.push_up_out);
 			break;
 		case 9:
-			Toast.makeText(getApplicationContext(), "Đang xây dựng ...", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), "Đang xây dựng ...",
+					Toast.LENGTH_SHORT).show();
 			break;
 		}
 	}
@@ -265,31 +274,31 @@ public class MainActivity extends FragmentActivity {
 		// Handle action bar actions click
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			Toast.makeText(getApplicationContext(), "Đang xây dựng...\n Mời quay lại sau !!!", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(),
+					"Đang xây dựng...\n Mời quay lại sau !!!",
+					Toast.LENGTH_SHORT).show();
 			return true;
 		case R.id.action_search:
-			
+
 			viewPager.setCurrentItem(2);
 			Tab3.edtSearch.requestFocus();
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.drawable.item_search, menu);
-//		 SearchManager searchManager =
-//                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//          SearchView searchView =
-//                  (SearchView) menu.findItem(R.id.action_search).getActionView();
-//      searchView.setSearchableInfo(
-//                  searchManager.getSearchableInfo(getComponentName()));
+		// SearchManager searchManager =
+		// (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+		// SearchView searchView =
+		// (SearchView) menu.findItem(R.id.action_search).getActionView();
+		// searchView.setSearchableInfo(
+		// searchManager.getSearchableInfo(getComponentName()));
 		return super.onCreateOptionsMenu(menu);
 	}
-	
-	
 
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -304,45 +313,49 @@ public class MainActivity extends FragmentActivity {
 		// Pass any configuration change to the drawer toggls
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
-	
-	public boolean isOnline() {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
-	    return netInfo != null && netInfo.isConnectedOrConnecting();
-	}
-	 public Boolean checkTable(SQLiteDatabase database,String tableName){
-	    	Cursor c = database.rawQuery("select DISTINCT tbl_name from sqlite_master where tbl_name = '" + tableName + "'",null);
-	    	
-	    	if(c!=null){
-	    		if(c.getCount()>0){
-	    			c.close();
-	    			return true;
-	    		}
-	    	}
-	    	return false;
-	    }
-	 
-	 public SQLiteDatabase getDatabase(){
-			database = openOrCreateDatabase("mydata.db",SQLiteDatabase.CREATE_IF_NECESSARY, null);
-			if(database!=null){
-				if(checkTable(database,"tblLike")){
-					return database;
-					}
-					 database.setLocale(Locale.getDefault());
-		    		 database.setVersion(1);
-		    		 String lopString = "create table tblLike(Name NVARCHAR primary key,urlImg NVARCHAR,author NVARCHAR,type NVARCHAR,position NVARCHAR)";
-		    		 database.execSQL(lopString);
-		    		String Student = "create table tblChapDownLoad(Chap text primary key)";
-		    		database.execSQL(Student);
-		    		String resume = "create table tblResume(Chap text primary key,pager text)";
-		    		database.execSQL(resume);
 
-		    		//Toast.makeText(getBaseContext(),"Tạo CSDL thành công",Toast.LENGTH_SHORT).show();
-				}
-			return database;
+	public boolean isOnline() {
+		ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo netInfo = cm.getActiveNetworkInfo();
+		return netInfo != null && netInfo.isConnectedOrConnecting();
+	}
+
+	public Boolean checkTable(SQLiteDatabase database, String tableName) {
+		Cursor c = database.rawQuery(
+				"select DISTINCT tbl_name from sqlite_master where tbl_name = '"
+						+ tableName + "'", null);
+
+		if (c != null) {
+			if (c.getCount() > 0) {
+				c.close();
+				return true;
+			}
 		}
-	public void listenNetwork(){
+		return false;
+	}
+
+	public SQLiteDatabase getDatabase() {
+		database = openOrCreateDatabase("mydata.db",
+				SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		if (database != null) {
+			if (checkTable(database, "tblLike")) {
+				return database;
+			}
+			database.setLocale(Locale.getDefault());
+			database.setVersion(1);
+			String lopString = "create table tblLike(Name NVARCHAR primary key,urlImg NVARCHAR,author NVARCHAR,type NVARCHAR,position NVARCHAR)";
+			database.execSQL(lopString);
+			String Student = "create table tblChapDownLoad(Chap text primary key)";
+			database.execSQL(Student);
+			String resume = "create table tblResume(Chap text primary key,pager text)";
+			database.execSQL(resume);
+
+			// Toast.makeText(getBaseContext(),"Tạo CSDL thành công",Toast.LENGTH_SHORT).show();
+		}
+		return database;
+	}
+
+	public void listenNetwork() {
 		broadcastReceiver = new BroadcastReceiver() {
 
 			@Override
@@ -353,7 +366,7 @@ public class MainActivity extends FragmentActivity {
 
 				if (networkInfo != null && networkInfo.isConnected()) {
 					network = true;
-					
+
 					viewPager.setAdapter(mapager);
 					tab_strp = (PagerTabStrip) findViewById(R.id.tab_strip);
 					tab_strp.setTextColor(Color.WHITE);
@@ -388,5 +401,6 @@ public class MainActivity extends FragmentActivity {
 		registerReceiver(broadcastReceiver, filter);
 	}
 
+	
 
 }

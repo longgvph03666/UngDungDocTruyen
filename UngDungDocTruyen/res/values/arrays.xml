@@ -1,0 +1,36 @@
+<resources>
+
+    <string-array name="listColor">
+        <item>Đen</item>
+        <item>Trắng</item>
+        <item>Đỏ</item>
+        <item>Xanh lục</item>
+        <item>Vàng</item>
+        <item>Xanh dương</item>
+        <item>Tím</item>
+        <item>Xám</item>
+        <item>Cam</item>
+        <item>Hồng</item>
+    </string-array>
+    <string-array name="listColorValues">
+        <item>Đen</item>
+        <item>Trắng</item>
+        <item>Đỏ</item>
+        <item>Xanh lục</item>
+        <item>Vàng</item>
+        <item>Xanh dương</item>
+        <item>Tím</item>
+        <item>Xám</item>
+        <item>Cam</item>
+        <item>Hồng</item>
+    </string-array>
+    <string-array name="listLanguage">
+        <item>Vietnamese</item>
+        <item>English</item>
+        <item>Chinna</item>
+        <item>Japan</item>
+        <item>US</item>
+        <item>Indonesia</item>
+    </string-array>
+
+</resources>
