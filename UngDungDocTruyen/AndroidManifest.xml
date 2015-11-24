@@ -93,6 +93,10 @@
             android:name="com.group1.app.ungdungdoctruyen.OtherActivity.ActivitySetting"
             android:label="@string/title_activity_activity_setting" >
         </activity>
+        <activity
+            android:name="com.group1.app.ungdungdoctruyen.ListDownloadActivity"
+            android:label="@string/title_activity_list_download" >
+        </activity>
     </application>
 
 </manifest>

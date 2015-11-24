@@ -84,7 +84,7 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 				String filename =chapers.getUrlDown();
 				String name = filename.substring(filename.lastIndexOf('/') + 1);
 				
-				file	= new File("/sdcard/"+name);
+				file	= new File("/sdcard/DownloadTruyen/"+name);
 				if(file.exists()){
 					Intent in = new Intent(context,
 							ReadMangaActivity.class);
@@ -150,7 +150,7 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 				String filename =params[0];
 				String name = filename.substring(filename.lastIndexOf('/') + 1);
 				
-				file	= new File("/sdcard/"+name);
+				file	= new File("/sdcard/DownloadTruyen/"+name);
 				URL url = new URL(params[0]);
 				URLConnection conn = url.openConnection();
 				conn.connect();
@@ -158,7 +158,7 @@ public class ChapterAdapter extends ArrayAdapter<ChapterItems> {
 				// Download file
 				InputStream input = new BufferedInputStream(url.openStream());
 				String fileName = filename.substring(filename.lastIndexOf('/') + 1);
-				OutputStream output = new FileOutputStream("/sdcard/"+fileName);
+				OutputStream output = new FileOutputStream("/sdcard/DownloadTruyen/"+fileName);
 
 				byte data[] = new byte[1024];
 

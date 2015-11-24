@@ -1,5 +1,6 @@
 package com.group1.app.ungdungdoctruyen;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -10,7 +11,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -19,14 +19,15 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -87,7 +88,12 @@ public class MainActivity extends FragmentActivity {
 
 		mapager = new TabsSelector(getSupportFragmentManager());
 		viewPager = (ViewPager) findViewById(R.id.pager);
-
+		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+	        Log.d("MyApp", "No SDCARD");
+	} else {
+	    File directory = new File(Environment.getExternalStorageDirectory()+File.separator+"DownloadTruyen");
+	    directory.mkdirs();
+	}
 		listenNetwork();
 		getDatabase();
 		Cursor c = database
@@ -209,9 +215,12 @@ public class MainActivity extends FragmentActivity {
 		case 1:
 
 			break;
-		case 2:
-
+		case 2:{
+			Intent intent = new Intent(getBaseContext(),
+					ListDownloadActivity.class);
+			startActivity(intent);
 			break;
+			}
 		case 3: {
 			Intent intent = new Intent(getBaseContext(),
 					ListLikeMangaActivity.class);
