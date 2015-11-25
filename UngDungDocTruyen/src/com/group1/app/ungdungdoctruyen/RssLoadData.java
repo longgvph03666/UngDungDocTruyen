@@ -79,7 +79,7 @@ public class RssLoadData extends AsyncTask<Void, Void, Void>{
 		int index1 = link.indexOf("src=\"") + 5;
 		int index2 = link.indexOf("\"", index1);
 		String getLink = link.substring(index1, index2);
-		
+		//
 		return getLink;
 	}
 }
