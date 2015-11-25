@@ -27,7 +27,7 @@ public class RssWebView extends Activity {
 		url = it.getStringExtra("link");
 		webView.loadUrl(url);
 
-		// Set nút back ở lable
+		
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
 
