@@ -68,6 +68,7 @@ public class MainActivity extends FragmentActivity {
 
 	BroadcastReceiver broadcastReceiver;
 	public static boolean network = false;
+	// Edit swipstab
 	// nav drawer title
 	private CharSequence mDrawerTitle;
 
