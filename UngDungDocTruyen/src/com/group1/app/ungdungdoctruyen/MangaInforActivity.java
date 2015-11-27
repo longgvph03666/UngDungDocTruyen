@@ -122,7 +122,7 @@ public class MangaInforActivity extends Activity {
 									c.close();
 									Bundle b = new Bundle();
                                     b.putString("url",arrChapter.get(position).getUrlOnline().toString());
-                                   
+                                    b.putString("Chap",arrManga.get(MangaInforActivity.this.position).getMangaName().toString() + " " + arrChapter.get(position).getChapter().toString());
                                     
                                     b.putString("pager",pos);
                                     database.delete("tblResume","Chap = ?",new String []{chap.substring(chap.lastIndexOf('/') + 1)});
@@ -140,6 +140,7 @@ public class MangaInforActivity extends Activity {
 									// TODO Auto-generated method stub
 									Bundle b = new Bundle();
                                     b.putString("url",arrChapter.get(position).getUrlOnline().toString());
+                                     b.putString("Chap",arrManga.get(MangaInforActivity.this.position).getMangaName().toString() + " " + arrChapter.get(position).getChapter().toString());
                                    
                                     pos="0";
                                     b.putString("pager",pos);
@@ -156,7 +157,9 @@ public class MangaInforActivity extends Activity {
 				else{Bundle b = new Bundle();
                     b.putString("url",arrChapter.get(position).getUrlOnline().toString());
 					   pos="0";
+					   
                        b.putString("pager",pos);
+                        b.putString("Chap",arrManga.get(MangaInforActivity.this.position).getMangaName().toString() + " " + arrChapter.get(position).getChapter().toString());
                        database.delete("tblResume","Chap = ?",new String []{chap.substring(chap.lastIndexOf('/') + 1)});
                        Intent intent = new Intent(MangaInforActivity.this,ReadMangaOnlineActivity.class);
                        intent.putExtras(b);
