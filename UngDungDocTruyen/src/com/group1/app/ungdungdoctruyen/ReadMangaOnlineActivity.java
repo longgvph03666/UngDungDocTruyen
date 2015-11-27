@@ -53,6 +53,7 @@ public class ReadMangaOnlineActivity extends FragmentActivity {
 	public static final int INDEX = 2;
 	public ArrayList<String> arrImg;
 	int positions,pos;
+	String chap;
 	ImageAdapter adapter;
     SQLiteDatabase database;
 	// private static final String[] IMAGE_URLS ;
@@ -66,9 +67,10 @@ public class ReadMangaOnlineActivity extends FragmentActivity {
 		 Bundle b = in.getExtras();
 
 		link = b.getString("url");
+		chap = b.getString("Chap");
 		pos =  Integer.parseInt(b.getString("pager"));
 		database = openOrCreateDatabase("mydata.db", SQLiteDatabase.CREATE_IF_NECESSARY,null);
-		
+	        setTitle(chap);
 		adapter = new ImageAdapter(getBaseContext());
 		new DoGetRss().execute();
 
