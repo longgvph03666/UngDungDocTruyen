@@ -36,7 +36,7 @@ public class OpenFileActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-//		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREENs,
 //				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_open_file);
 		//img = (ImageView) findViewById(R.id.imageView1);
