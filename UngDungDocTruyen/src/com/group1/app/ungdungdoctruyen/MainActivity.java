@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.database.Cursor;
@@ -18,15 +19,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,6 +58,7 @@ public class MainActivity extends FragmentActivity {
 	SQLiteDatabase database;
 	private ActionBarDrawerToggle mDrawerToggle;
 	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
+	public static boolean isCheckedTheme = false;
 	Handler handler = new Handler();
 	Runnable timedTask = new Runnable() {
 
@@ -89,12 +95,14 @@ public class MainActivity extends FragmentActivity {
 
 		mapager = new TabsSelector(getSupportFragmentManager());
 		viewPager = (ViewPager) findViewById(R.id.pager);
-		if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-	        Log.d("MyApp", "No SDCARD");
-	} else {
-	    File directory = new File(Environment.getExternalStorageDirectory()+File.separator+"DownloadTruyen");
-	    directory.mkdirs();
-	}
+		if (!Environment.getExternalStorageState().equals(
+				Environment.MEDIA_MOUNTED)) {
+			Log.d("MyApp", "No SDCARD");
+		} else {
+			File directory = new File(Environment.getExternalStorageDirectory()
+					+ File.separator + "DownloadTruyen");
+			directory.mkdirs();
+		}
 		listenNetwork();
 		getDatabase();
 		Cursor c = database
@@ -192,7 +200,7 @@ public class MainActivity extends FragmentActivity {
 
 		new RssLoadData().execute();
 		arrlData = RssLoadData.arrlData;
-
+		doSetting();
 	}
 
 	private class SlideMenuClickListener implements
@@ -216,12 +224,12 @@ public class MainActivity extends FragmentActivity {
 		case 1:
 
 			break;
-		case 2:{
+		case 2: {
 			Intent intent = new Intent(getBaseContext(),
 					ListDownloadActivity.class);
 			startActivity(intent);
 			break;
-			}
+		}
 		case 3: {
 			Intent intent = new Intent(getBaseContext(),
 					ListLikeMangaActivity.class);
@@ -242,7 +250,7 @@ public class MainActivity extends FragmentActivity {
 			break;
 		}
 		case 6:
-
+			doHelp();
 			break;
 		case 7: {
 			Intent intent = new Intent(getBaseContext(), ActivitySetting.class);
@@ -411,6 +419,109 @@ public class MainActivity extends FragmentActivity {
 		registerReceiver(broadcastReceiver, filter);
 	}
 
+	public void doHelp() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+		builder.setTitle("Trợ giúp");
+		builder.setMessage("Liên hệ với chúng tôi để được trợ giúp ngay và luôn ?");
+		builder.setNegativeButton("Có", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				MyPhoneListener phoneListener = new MyPhoneListener();
+				TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext()
+						.getSystemService(Context.TELEPHONY_SERVICE);
+				// receive notifications of telephony state changes
+				telephonyManager.listen(phoneListener,
+						PhoneStateListener.LISTEN_CALL_STATE);
+
+				String uri = "tel:" + "0979579283";
+				Intent callIntent = new Intent(Intent.ACTION_CALL, Uri
+						.parse(uri));
+
+				startActivity(callIntent);
+
+			}
+		});
+
+		builder.setPositiveButton("Không",
+				new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+					}
+				});
+
+		builder.create();
+		builder.show();
+
+		MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
+	}
+
+	private class MyPhoneListener extends PhoneStateListener {
+
+		private boolean onCall = false;
+
+		@Override
+		public void onCallStateChanged(int state, String incomingNumber) {
+
+			switch (state) {
+			case TelephonyManager.CALL_STATE_RINGING:
+				// phone ringing...
+				Toast.makeText(MainActivity.this,
+						incomingNumber + " calls you", Toast.LENGTH_LONG)
+						.show();
+				break;
+
+			case TelephonyManager.CALL_STATE_OFFHOOK:
+				// one call exists that is dialing, active, or on hold
+				Toast.makeText(MainActivity.this, "Hãy chờ trong giây lát ...",
+						Toast.LENGTH_LONG).show();
+				// because user answers the incoming call
+				onCall = true;
+				break;
+
+			case TelephonyManager.CALL_STATE_IDLE:
+				// in initialization of the class and at the end of phone call
+
+				// detect flag from CALL_STATE_OFFHOOK
+				if (onCall == true) {
+					Toast.makeText(MainActivity.this, "Đang chuyển hướng...",
+							Toast.LENGTH_LONG).show();
+
+					// restart our application
+					Intent restart = getBaseContext().getPackageManager()
+							.getLaunchIntentForPackage(
+									getBaseContext().getPackageName());
+					restart.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(restart);
+
+					onCall = false;
+				}
+				break;
+			default:
+				break;
+			}
+
+		}
+	}
 	
+	public void doSetting() {
+		SharedPreferences sharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(getBaseContext());
+
+		if (sharedPreferences.getBoolean("theme", false)) {
+			isCheckedTheme = true;
+			Toast.makeText(getApplicationContext(), isCheckedTheme + "", Toast.LENGTH_SHORT).show();
+		}
+
+	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		doSetting();
+	}
 
 }

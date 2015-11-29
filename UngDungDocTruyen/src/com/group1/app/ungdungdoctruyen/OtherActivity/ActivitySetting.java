@@ -1,12 +1,15 @@
 package com.group1.app.ungdungdoctruyen.OtherActivity;
 
+import com.group1.app.ungdungdoctruyen.MainActivity;
 import com.group1.app.ungdungdoctruyen.R;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 @SuppressLint("NewApi")
 public class ActivitySetting extends PreferenceActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
@@ -16,11 +19,11 @@ public class ActivitySetting extends PreferenceActivity implements SharedPrefere
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.layout.activity_setting);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
 	}
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
-		
-		
+		Toast.makeText(getApplicationContext(), "Đã lưu thay đổi", Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override

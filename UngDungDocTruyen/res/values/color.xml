@@ -6,5 +6,11 @@
     <color name="list_divider">#272727</color>
     <color name="counter_text_bg">#626262</color>
     <color name="counter_text_color">#c5c4c4</color>
+    
     <color name="red">#FF0000</color>
+    <color name="blackBold">#000000</color>
+    <color name="blackLight">#181818</color>
+    <color name="yellow">#fff200</color>
+    <color name="violet">#a845de</color>
+    
 </resources>

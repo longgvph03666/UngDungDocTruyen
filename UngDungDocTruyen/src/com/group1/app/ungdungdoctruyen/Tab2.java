@@ -16,8 +16,10 @@ import org.w3c.dom.NodeList;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,21 +29,22 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.group1.app.ungdungdoctruyen.loadimg.ImageLoader;
 import com.group1.app.ungdungdoctruyen.objects.RssObject;
-import com.group1.app.ungdungdoctruyen.rss.Rss_LoadImages;
 
 public class Tab2 extends Fragment {
 	View v;
 	ImageView iv1, iv2, iv3, iv4, iv5, iv6, iv7, iv8;
 	TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
-	LinearLayout l1,l2,l3,l4,l5,l6,l7,l8;
+	LinearLayout l1, l2, l3, l4, l5, l6, l7, l8;
 	int num1, num2, num3, num4, num5, num6, num7, num8;
 	ImageLoader imageLoader;
 	Random rd;
-	 private ProgressDialog dialog;
-	 
+	boolean isCheckedTheme; // return true, false if choose theme
+	private ProgressDialog dialog;
+
 	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
 
 	@Override
@@ -49,14 +52,18 @@ public class Tab2 extends Fragment {
 			Bundle savedInstanceState) {
 		if (MainActivity.network) {
 			v = inflater.inflate(R.layout.layout_tab2, container, false);
-			dialog = ProgressDialog.show(getActivity(), "","Loading.....");
+			dialog = ProgressDialog.show(getActivity(), "", "Loading.....");
 			new xuLyRss().execute();
 			setView();
 			setEventForTextView();
 			imageLoader = new ImageLoader(getActivity().getApplicationContext());
-		}else{
-			v = inflater.inflate(R.layout.activity_activity_error_network, container, false);
+		} else {
+			v = inflater.inflate(R.layout.activity_activity_error_network,
+					container, false);
 		}
+//		if (Main) {
+//			
+//		}
 		return v;
 	}
 
@@ -78,7 +85,7 @@ public class Tab2 extends Fragment {
 		tv6 = (TextView) v.findViewById(R.id.tv_titleNews_6);
 		tv7 = (TextView) v.findViewById(R.id.tv_titleNews_7);
 		tv8 = (TextView) v.findViewById(R.id.tv_titleNews_8);
-		
+
 		l1 = (LinearLayout) v.findViewById(R.id.linear1);
 		l2 = (LinearLayout) v.findViewById(R.id.linear2);
 		l3 = (LinearLayout) v.findViewById(R.id.linear3);
@@ -151,11 +158,15 @@ public class Tab2 extends Fragment {
 	}
 
 	public void setImages() {
-		imageLoader.DisplayImage(arrlData.get((num1 + 1) * 10 - 10).getImages(), iv1);
-		imageLoader.DisplayImage(arrlData.get((num2 + 1) * 10 - 10).getImages(), iv2);
-		imageLoader.DisplayImage(arrlData.get((num3 + 1) * 10 - 10).getImages(), iv3);
-		imageLoader.DisplayImage(arrlData.get((num4 + 1) * 10 - 10).getImages(), iv4);
-		
+		imageLoader.DisplayImage(
+				arrlData.get((num1 + 1) * 10 - 10).getImages(), iv1);
+		imageLoader.DisplayImage(
+				arrlData.get((num2 + 1) * 10 - 10).getImages(), iv2);
+		imageLoader.DisplayImage(
+				arrlData.get((num3 + 1) * 10 - 10).getImages(), iv3);
+		imageLoader.DisplayImage(
+				arrlData.get((num4 + 1) * 10 - 10).getImages(), iv4);
+
 		imageLoader.DisplayImage(arrlData.get(num5).getImages(), iv5);
 		imageLoader.DisplayImage(arrlData.get(num6).getImages(), iv6);
 		imageLoader.DisplayImage(arrlData.get(num7).getImages(), iv7);
@@ -224,8 +235,7 @@ public class Tab2 extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(getActivity(), RssWebView.class);
-				it.putExtra("link", arrlData.get(num5)
-						.getLink());
+				it.putExtra("link", arrlData.get(num5).getLink());
 				startActivity(it);
 				getActivity().overridePendingTransition(R.animator.push_up_in,
 						R.animator.push_up_out);
@@ -236,8 +246,7 @@ public class Tab2 extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(getActivity(), RssWebView.class);
-				it.putExtra("link", arrlData.get(num6)
-						.getLink());
+				it.putExtra("link", arrlData.get(num6).getLink());
 				startActivity(it);
 				getActivity().overridePendingTransition(R.animator.push_up_in,
 						R.animator.push_up_out);
@@ -248,8 +257,7 @@ public class Tab2 extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(getActivity(), RssWebView.class);
-				it.putExtra("link", arrlData.get(num7)
-						.getLink());
+				it.putExtra("link", arrlData.get(num7).getLink());
 				startActivity(it);
 				getActivity().overridePendingTransition(R.animator.push_up_in,
 						R.animator.push_up_out);
@@ -260,14 +268,13 @@ public class Tab2 extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent it = new Intent(getActivity(), RssWebView.class);
-				it.putExtra("link", arrlData.get(num8)
-						.getLink());
+				it.putExtra("link", arrlData.get(num8).getLink());
 				startActivity(it);
 				getActivity().overridePendingTransition(R.animator.push_up_in,
 						R.animator.push_up_out);
 			}
 		});
-		
+
 	}
 
 	public class xuLyRss extends AsyncTask<Void, Void, Void> {
@@ -337,6 +344,15 @@ public class Tab2 extends Fragment {
 		}
 
 	}
-	
+
+	public void doSetting() {
+		SharedPreferences sharedPreferences = PreferenceManager
+				.getDefaultSharedPreferences(getActivity());
+
+		if (sharedPreferences.getBoolean("theme", false)) {
+			Toast.makeText(getActivity(), "Changed...", Toast.LENGTH_SHORT).show();
+		}
+
+	}
 
 }

@@ -13,28 +13,24 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.group1.app.ungdungdoctruyen.Tab3.DoGetRss;
-import com.group1.app.ungdungdoctruyen.adapter.ListMangaAdapter;
-import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
-
-import android.os.AsyncTask;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.group1.app.ungdungdoctruyen.adapter.ListMangaAdapter;
+import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
 
 public class ListLikeMangaActivity extends Activity {
 
