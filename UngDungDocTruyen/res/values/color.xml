@@ -12,5 +12,7 @@
     <color name="blackLight">#181818</color>
     <color name="yellow">#fff200</color>
     <color name="violet">#a845de</color>
-    
+    <color name="white">#FFFFFF</color>
+    <color name="blueLight">#00FF00</color>
+    <color name="bgDefault">#eeeeee</color>
 </resources>

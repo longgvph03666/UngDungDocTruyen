@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,11 +35,12 @@ import android.widget.Toast;
 import com.group1.app.ungdungdoctruyen.loadimg.ImageLoader;
 import com.group1.app.ungdungdoctruyen.objects.RssObject;
 
+@SuppressLint("ResourceAsColor")
 public class Tab2 extends Fragment {
 	View v;
 	ImageView iv1, iv2, iv3, iv4, iv5, iv6, iv7, iv8;
-	TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8;
-	LinearLayout l1, l2, l3, l4, l5, l6, l7, l8;
+	TextView tv1, tv2, tv3, tv4, tv5, tv6, tv7, tv8, tvTitle1, tvTitle2;
+	LinearLayout l1, l2, l3, l4, l5, l6, l7, l8, layout_tab2, ll1,ll2,ll3,ll4,ll5,ll6,ll7,ll8;
 	int num1, num2, num3, num4, num5, num6, num7, num8;
 	ImageLoader imageLoader;
 	Random rd;
@@ -47,6 +49,7 @@ public class Tab2 extends Fragment {
 
 	public static ArrayList<RssObject> arrlData = new ArrayList<RssObject>();
 
+	@SuppressLint("ResourceAsColor")
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -61,9 +64,10 @@ public class Tab2 extends Fragment {
 			v = inflater.inflate(R.layout.activity_activity_error_network,
 					container, false);
 		}
-//		if (Main) {
-//			
-//		}
+		
+		changeTheme();
+//		tvTitle1.setTextColor();
+		
 		return v;
 	}
 
@@ -94,6 +98,18 @@ public class Tab2 extends Fragment {
 		l6 = (LinearLayout) v.findViewById(R.id.linear6);
 		l7 = (LinearLayout) v.findViewById(R.id.linear7);
 		l8 = (LinearLayout) v.findViewById(R.id.linear8);
+		
+		layout_tab2 =  (LinearLayout) v.findViewById(R.id.layout_tab2);
+		tvTitle1 = (TextView) v.findViewById(R.id.layout2_Title1);
+		tvTitle2 = (TextView) v.findViewById(R.id.layout2_Title2);
+		ll1 = (LinearLayout) v.findViewById(R.id.layout2_ll1);
+		ll2 = (LinearLayout) v.findViewById(R.id.layout2_ll2);
+		ll3 = (LinearLayout) v.findViewById(R.id.layout2_ll3);
+		ll4 = (LinearLayout) v.findViewById(R.id.layout2_ll4);
+		ll5 = (LinearLayout) v.findViewById(R.id.layout2_ll5);
+		ll6 = (LinearLayout) v.findViewById(R.id.layout2_ll6);
+		ll7 = (LinearLayout) v.findViewById(R.id.layout2_ll7);
+		ll8 = (LinearLayout) v.findViewById(R.id.layout2_ll8);
 	}
 
 	public void setTitle() {
@@ -345,14 +361,68 @@ public class Tab2 extends Fragment {
 
 	}
 
-	public void doSetting() {
-		SharedPreferences sharedPreferences = PreferenceManager
-				.getDefaultSharedPreferences(getActivity());
-
-		if (sharedPreferences.getBoolean("theme", false)) {
-			Toast.makeText(getActivity(), "Changed...", Toast.LENGTH_SHORT).show();
+//	public void doSetting() {
+//		SharedPreferences sharedPreferences = PreferenceManager
+//				.getDefaultSharedPreferences(getActivity());
+//
+//		if (sharedPreferences.getBoolean("theme", false)) {
+//			Toast.makeText(getActivity(), "Changed...", Toast.LENGTH_SHORT).show();
+//		}
+//
+//	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		changeTheme();
+	}
+	
+	@SuppressLint("ResourceAsColor")
+	public void changeTheme(){
+		if (MainActivity.isCheckedTheme) {
+			layout_tab2.setBackgroundResource(R.color.blackBold);
+			tvTitle1.setTextColor(R.color.blueLight);
+			tvTitle1.setTextColor(R.color.blueLight);
+			ll1.setBackgroundResource(R.drawable.custom_button2);
+			ll2.setBackgroundResource(R.drawable.custom_button2);
+			ll3.setBackgroundResource(R.drawable.custom_button2);
+			ll4.setBackgroundResource(R.drawable.custom_button2);
+			ll5.setBackgroundResource(R.drawable.custom_button2);
+			ll6.setBackgroundResource(R.drawable.custom_button2);
+			ll7.setBackgroundResource(R.drawable.custom_button2);
+			ll8.setBackgroundResource(R.drawable.custom_button2);
+			tvTitle1.setTextColor(this.getResources().getColor(R.color.white));
+			tvTitle2.setTextColor(this.getResources().getColor(R.color.white));
+			tv1.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv2.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv3.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv4.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv5.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv6.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv7.setTextColor(this.getResources().getColor(R.color.blueLight));
+			tv8.setTextColor(this.getResources().getColor(R.color.blueLight));
+		}else{
+			layout_tab2.setBackgroundResource(R.color.bgDefault);
+			tvTitle1.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tvTitle2.setTextColor(this.getResources().getColor(R.color.blackBold));
+			ll1.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll2.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll3.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll4.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll5.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll6.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll7.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			ll8.setBackgroundResource(R.drawable.bg_linearlayout_for_rss);
+			tv1.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv2.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv3.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv4.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv5.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv6.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv7.setTextColor(this.getResources().getColor(R.color.blackBold));
+			tv8.setTextColor(this.getResources().getColor(R.color.blackBold));
 		}
-
 	}
 
 }

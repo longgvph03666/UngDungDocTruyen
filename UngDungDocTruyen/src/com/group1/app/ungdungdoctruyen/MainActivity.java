@@ -512,9 +512,9 @@ public class MainActivity extends FragmentActivity {
 
 		if (sharedPreferences.getBoolean("theme", false)) {
 			isCheckedTheme = true;
-			Toast.makeText(getApplicationContext(), isCheckedTheme + "", Toast.LENGTH_SHORT).show();
+		}else{
+			isCheckedTheme = false;
 		}
-
 	}
 	
 	@Override

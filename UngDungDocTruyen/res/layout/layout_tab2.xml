@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="#eeeeee"
     android:orientation="vertical"
-    tools:context=".RssBook_index" >
+    tools:context=".RssBook_index" 
+    android:id="@+id/layout_tab2">
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -32,7 +33,7 @@
                         android:layout_height="wrap_content" >
 						
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/layout2_Title1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -58,7 +59,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll1" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_1"
@@ -83,7 +85,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll2" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_2"
@@ -116,7 +119,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll3">
 
                         <ImageView
                             android:id="@+id/iv_iconNews_3"
@@ -141,7 +145,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll4">
 
                         <ImageView
                             android:id="@+id/iv_iconNews_4"
@@ -178,7 +183,7 @@
                         android:layout_height="wrap_content" >
 
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/layout2_Title2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
@@ -203,7 +208,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical" >
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll5" >
 
                         <ImageView
                             android:id="@+id/iv_iconNews_5"
@@ -228,7 +234,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll6">
 
                         <ImageView
                             android:id="@+id/iv_iconNews_6"
@@ -261,7 +268,8 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll7">
 
                         <ImageView
                             android:id="@+id/iv_iconNews_7"
@@ -286,7 +294,8 @@
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_linearlayout_for_rss"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout2_ll8">
 
                         <ImageView
                             android:id="@+id/iv_iconNews_8"

@@ -27,6 +27,8 @@ public class ActivityInfomation extends Activity {
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom_row, arrName);
 		lv.setAdapter(adapter);
+		
+		MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
 	}
 
 	@Override

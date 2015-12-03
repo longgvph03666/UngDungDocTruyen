@@ -50,8 +50,9 @@ public class Tab1 extends Fragment{
 		arrlData = new ArrayList<RssObject>();
 		lvTypeEcomic = (ListView) v.findViewById(R.id.lvTypeEcomic);
 		
-		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrTypeEcomic);
-		lvTypeEcomic.setAdapter(adapter);
+//		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrTypeEcomic);
+//		lvTypeEcomic.setAdapter(adapter);
+		changeTheme();
 		
 		lvTypeEcomic.setOnItemClickListener(new OnItemClickListener() {
 
@@ -160,6 +161,21 @@ public class Tab1 extends Fragment{
 
 		}
 
+	}
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		changeTheme();
+	}
+	public void changeTheme(){
+		if (MainActivity.isCheckedTheme) {
+			adapter = new ArrayAdapter<String>(getActivity(), R.layout.custom_lv_theme, arrTypeEcomic);
+			lvTypeEcomic.setAdapter(adapter);
+		}else{
+			adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrTypeEcomic);
+			lvTypeEcomic.setAdapter(adapter);
+		}
 	}
 	
 	

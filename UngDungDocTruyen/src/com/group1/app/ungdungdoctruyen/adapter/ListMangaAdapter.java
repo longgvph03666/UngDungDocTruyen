@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,23 +14,26 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.group1.app.ungdungdoctruyen.MainActivity;
 import com.group1.app.ungdungdoctruyen.R;
 import com.group1.app.ungdungdoctruyen.items.ListMangaItems;
 import com.group1.app.ungdungdoctruyen.loadimg.ImageLoader;
 
+@SuppressLint("ResourceAsColor")
 public class ListMangaAdapter extends BaseAdapter {
     private ArrayList<ListMangaItems> listData;
     private List<ListMangaItems> mangaList = null;
     private LayoutInflater layoutInflater;
     private Activity activity;
     public ImageLoader imageLoader; 
+    
     public ListMangaAdapter(Context context, List<ListMangaItems> mangaList) {
         this.mangaList = mangaList;
         layoutInflater = LayoutInflater.from(context);
         this.listData = new ArrayList<ListMangaItems>();
         this.listData.addAll(mangaList);
         imageLoader=new ImageLoader(context);
-
+        
     }
 
     @Override
@@ -47,7 +51,8 @@ public class ListMangaAdapter extends BaseAdapter {
         return position;
     }
 
-    public View getView(int position, View convertView, ViewGroup parent) {
+    @SuppressLint("ResourceAsColor")
+	public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_manga, null);
@@ -69,6 +74,18 @@ public class ListMangaAdapter extends BaseAdapter {
         holder.reportedDateView.setText(newsItem.getDate());
         holder.author.setText(newsItem.getAuthor());
         imageLoader.DisplayImage(newsItem.getUrl(),holder.imageView);
+        
+//        if (MainActivity.isCheckedTheme) {
+//        	holder.headlineView.setTextColor(R.color.blueLight);
+//        	holder.reporterNameView.setTextColor(R.color.white);
+//        	holder.reportedDateView.setTextColor(R.color.white);
+//        	holder.author.setTextColor(R.color.white);
+//		}else{
+//			holder.headlineView.setTextColor(R.color.blackBold);
+//        	holder.reporterNameView.setTextColor(R.color.blackLight);
+//        	holder.reportedDateView.setTextColor(R.color.blackLight);
+//        	holder.author.setTextColor(R.color.blackLight);
+//		}
         return convertView;
     }
 
@@ -98,4 +115,6 @@ public class ListMangaAdapter extends BaseAdapter {
 		}
 		notifyDataSetChanged();
 	}
+    
+    
 }
