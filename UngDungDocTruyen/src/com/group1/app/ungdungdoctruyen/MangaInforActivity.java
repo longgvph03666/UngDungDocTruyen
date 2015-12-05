@@ -84,7 +84,6 @@ public class MangaInforActivity extends Activity {
 		arrManga = new ArrayList<MangaInforItems>();
 		
 		  new DoGetRss().execute();
-		// new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl());
 		 
 		arrChapter =new ArrayList<ChapterItems>();
 		new DoGetChapter().execute();
@@ -225,6 +224,7 @@ public class MangaInforActivity extends Activity {
 			// TODO Auto-generated method stub
 			try {
 				URL url = new URL("http://levietan.5gbfree.com/list_mangainfor.xml");
+				//URL url = new URL("http://gianglong7695.tk/list_mangainfor.xml");
 				URLConnection urlConnection = url.openConnection();
 				InputStream iS = urlConnection.getInputStream();			
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -261,8 +261,9 @@ public class MangaInforActivity extends Activity {
 			tvGenre.setText(arrManga.get(position).getGenre().toString());
 			tvMangaName.setText(arrManga.get(position).getMangaName().toString());
 			tvSummary.setText(arrManga.get(position).getSummary().toString());
-			//imageLoader.DisplayImage(arrManga.get(position).getUrl().toString(),imgCover);
-			new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl().toString());
+			
+			imageLoader.DisplayImage(arrManga.get(position).getUrl().toString(),imgCover);
+			//new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl().toString());
 			 if(checkName(arrManga.get(position).getMangaName().toString())){
 				  btnLike.setText("Dislike");
 			  }

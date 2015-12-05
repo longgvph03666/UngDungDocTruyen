@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -113,8 +114,9 @@ public class Tab3 extends Fragment {
 		protected Void doInBackground(Void... params) {
 			// TODO Auto-generated method stub
 			try {
-				arrayMangas.clear();
+				//arrayMangas.clear();
 				URL url = new URL("http://levietan.5gbfree.com/list_manga.xml");
+				//URL url = new URL("http://gianglong7695.tk/list_manga.xml");
 				URLConnection urlConnection = url.openConnection();
 				InputStream iS = urlConnection.getInputStream();
 				DocumentBuilderFactory dbFactory = DocumentBuilderFactory
@@ -140,6 +142,7 @@ public class Tab3 extends Fragment {
 					String types = ((Element) n1News)
 							.getElementsByTagName("types").item(0)
 							.getTextContent();
+					
 					ListMangaItems item = new ListMangaItems(tittle, types,
 							img, authors, i);
 					arrayMangas.add(item);
@@ -155,7 +158,7 @@ public class Tab3 extends Fragment {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-
+			Log.d("types", String.valueOf(arrayMangas.size()));
 			adapter = new ListMangaAdapter(getActivity(), arrayMangas);
 			listView.setAdapter(adapter);
 		}
