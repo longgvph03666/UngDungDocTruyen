@@ -12,8 +12,9 @@
     android:text="TextView 1"/>
 <ImageView
     android:id="@+id/imgDownload"
-    android:layout_width="40dp"
-    android:layout_height="40dp"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
     android:layout_alignParentRight="true"
-    android:src="@drawable/download174"/>"
+    android:src="@drawable/download174"
+    android:layout_margin="5dp"/>
 </RelativeLayout>

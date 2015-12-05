@@ -35,7 +35,7 @@ public class ImageLoader {
         executorService=Executors.newFixedThreadPool(5);
     }
     
-    final int stub_id=com.group1.app.ungdungdoctruyen.R.drawable.placeholder;
+    final int stub_id=com.group1.app.ungdungdoctruyen.R.drawable.avatar_icon;
     public void DisplayImage(String url, ImageView imageView)
     {
         imageViews.put(imageView, url);

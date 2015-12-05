@@ -21,8 +21,7 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/custom_actionbar_style"
-         >
+        android:theme="@style/custom_actionbar_style" >
         <activity
             android:name="com.group1.app.ungdungdoctruyen.MainActivity"
             android:label="@string/app_name"
@@ -36,37 +35,37 @@
         <activity
             android:name="com.group1.app.ungdungdoctruyen.Tab1"
             android:label="@string/title_activity_tab1"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.Tab2"
             android:label="@string/title_activity_tab2"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.Tab3"
             android:label="@string/title_activity_tab3"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.Tab4"
             android:label="@string/title_activity_tab4"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.RssBook_index"
             android:label="@string/title_activity_rss_book_index"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.RssBook_Detail"
             android:label="@string/title_activity_rss_book__detail"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.RssWebView"
             android:label="@string/title_activity_rss__webview"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.MangaInforActivity"
@@ -75,47 +74,47 @@
         <activity
             android:name="com.group1.app.ungdungdoctruyen.OpenFileActivity"
             android:label="@string/title_activity_open_file"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ReadMangaActivity"
             android:label="@string/title_activity_read_manga"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.EcomicType"
             android:label="@string/title_activity_ecomic__type"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ReadMangaOnlineActivity"
             android:label="@string/title_activity_read_manga_online"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ActivityErrorNetwork"
             android:label="Lỗi mạng"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ListLikeMangaActivity"
             android:label="@string/title_activity_list_like_manga"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.OtherActivity.ActivityInfomation"
             android:label="@string/title_activity_activity_infomation"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.OtherActivity.ActivitySetting"
             android:label="@string/title_activity_activity_setting"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.group1.app.ungdungdoctruyen.ListDownloadActivity"
             android:label="@string/title_activity_list_download"
-            android:screenOrientation="portrait" > >
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 

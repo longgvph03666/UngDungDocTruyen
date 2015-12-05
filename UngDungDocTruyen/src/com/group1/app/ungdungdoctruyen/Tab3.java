@@ -77,8 +77,10 @@ public class Tab3 extends Fragment {
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
 				// TODO Auto-generated method stub
-
-				adapter.filter(s.toString());
+				//------------------------- Host die -----------------------------------------
+				if (ListMangaAdapter.listData.size() != 0) {
+					adapter.filter(s.toString());
+				}
 			}
 
 			@Override

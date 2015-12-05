@@ -46,10 +46,11 @@ public class RssWebView extends Activity {
 	}
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		Intent myIntent = new Intent(getApplicationContext(),
-				EcomicType.class);
-		startActivityForResult(myIntent, 0);
-		overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+//		Intent myIntent = new Intent(getApplicationContext(),
+//				EcomicType.class);
+//		startActivityForResult(myIntent, 0);
+//		overridePendingTransition(R.animator.fadein, R.animator.fadeout);
+		onBackPressed();
 		return true;
 	}
 

@@ -21,7 +21,7 @@ import com.group1.app.ungdungdoctruyen.loadimg.ImageLoader;
 
 @SuppressLint("ResourceAsColor")
 public class ListMangaAdapter extends BaseAdapter {
-    private ArrayList<ListMangaItems> listData;
+    public static ArrayList<ListMangaItems> listData;
     private List<ListMangaItems> mangaList = null;
     private LayoutInflater layoutInflater;
     private Activity activity;

@@ -132,23 +132,28 @@ public class Tab2 extends Fragment {
 		while ((num2 = rd.nextInt(20)) == num1) {
 			num2 = rd.nextInt(20);
 		}
-
+		
+		
 		while ((num3 = rd.nextInt(20)) == num1) {
 			num3 = rd.nextInt(20);
+			
+			while ((num3 = rd.nextInt(20)) == num2) {
+				num3 = rd.nextInt(20);
+			}
 		}
-		while ((num3 = rd.nextInt(20)) == num2) {
-			num3 = rd.nextInt(20);
-		}
+		
 
 		while ((num4 = rd.nextInt(20)) == num1) {
 			num4 = rd.nextInt(20);
+			
+			while ((num4 = rd.nextInt(20)) == num2) {
+				num4 = rd.nextInt(20);
+			}
+			while ((num4 = rd.nextInt(20)) == num3) {
+				num4 = rd.nextInt(20);
+			}
 		}
-		while ((num4 = rd.nextInt(20)) == num2) {
-			num4 = rd.nextInt(20);
-		}
-		while ((num4 = rd.nextInt(20)) == num3) {
-			num4 = rd.nextInt(20);
-		}
+		
 
 		num5 = rd.nextInt(230);
 		while ((num6 = rd.nextInt(230)) == num5) {
@@ -157,20 +162,24 @@ public class Tab2 extends Fragment {
 
 		while ((num7 = rd.nextInt(230)) == num5) {
 			num7 = rd.nextInt(10);
+			
+			while ((num7 = rd.nextInt(230)) == num6) {
+				num7 = rd.nextInt(230);
+			}
 		}
-		while ((num7 = rd.nextInt(230)) == num6) {
-			num7 = rd.nextInt(230);
-		}
+		
 
 		while ((num8 = rd.nextInt(230)) == num5) {
 			num8 = rd.nextInt(10);
+			
+			while ((num8 = rd.nextInt(230)) == num6) {
+				num8 = rd.nextInt(10);
+			}
+			while ((num8 = rd.nextInt(230)) == num7) {
+				num8 = rd.nextInt(230);
+			}
 		}
-		while ((num8 = rd.nextInt(230)) == num6) {
-			num8 = rd.nextInt(10);
-		}
-		while ((num8 = rd.nextInt(230)) == num7) {
-			num8 = rd.nextInt(230);
-		}
+		
 	}
 
 	public void setImages() {
@@ -198,7 +207,7 @@ public class Tab2 extends Fragment {
 	}
 
 	public void setEventForTextView() {
-		tv1.setOnClickListener(new OnClickListener() {
+		ll1.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -210,7 +219,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv2.setOnClickListener(new OnClickListener() {
+		ll2.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -222,7 +231,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv3.setOnClickListener(new OnClickListener() {
+		ll3.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -234,7 +243,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv4.setOnClickListener(new OnClickListener() {
+		ll4.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -246,7 +255,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv5.setOnClickListener(new OnClickListener() {
+		ll5.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -257,7 +266,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv6.setOnClickListener(new OnClickListener() {
+		ll6.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -268,7 +277,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv7.setOnClickListener(new OnClickListener() {
+		ll7.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -279,7 +288,7 @@ public class Tab2 extends Fragment {
 						R.animator.push_up_out);
 			}
 		});
-		tv8.setOnClickListener(new OnClickListener() {
+		ll8.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
