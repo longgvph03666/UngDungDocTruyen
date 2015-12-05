@@ -75,6 +75,7 @@ public class ListMangaAdapter extends BaseAdapter {
         holder.author.setText(newsItem.getAuthor());
         imageLoader.DisplayImage(newsItem.getUrl(),holder.imageView);
         
+
 //        if (MainActivity.isCheckedTheme) {
 //        	holder.headlineView.setTextColor(R.color.blueLight);
 //        	holder.reporterNameView.setTextColor(R.color.white);

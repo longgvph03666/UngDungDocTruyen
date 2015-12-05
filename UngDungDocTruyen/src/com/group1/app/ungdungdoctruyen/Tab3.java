@@ -25,8 +25,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.group1.app.ungdungdoctruyen.adapter.ListMangaAdapter;
@@ -38,6 +40,7 @@ public class Tab3 extends Fragment {
 	ListMangaAdapter adapter;
 	ListView listView;
 	ArrayList<ListMangaItems> arrayMangas;
+	LinearLayout layout_tab3;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -153,6 +156,14 @@ public class Tab3 extends Fragment {
 
 			adapter = new ListMangaAdapter(getActivity(), arrayMangas);
 			listView.setAdapter(adapter);
+		}
+	}
+	
+	public void changeTheme(){
+		if (MainActivity.isCheckedTheme) {
+			
+		}else{
+			
 		}
 	}
 

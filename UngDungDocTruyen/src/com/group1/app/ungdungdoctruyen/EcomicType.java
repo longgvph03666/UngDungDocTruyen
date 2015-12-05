@@ -2,6 +2,7 @@ package com.group1.app.ungdungdoctruyen;
 
 import com.group1.app.ungdungdoctruyen.adapter.RssCustomLv;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,12 +11,14 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
+@SuppressLint("NewApi")
 public class EcomicType extends Activity {
 	BroadcastReceiver broadcastReceiver;
 	boolean network = false;
@@ -38,6 +41,7 @@ public class EcomicType extends Activity {
 		setContentView(R.layout.activity_ecomic_type);
 		lvEcomicType = (ListView) findViewById(R.id.lvEcomicType);
 		listenNetwork();
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Intent it = getIntent();
 		int index = it.getIntExtra("index", MODE_PRIVATE);
@@ -115,7 +119,8 @@ public class EcomicType extends Activity {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		super.onBackPressed();
+		//super.onBackPressed();
+		finish();
 		overridePendingTransition(R.animator.push_down_in, R.animator.push_down_out);
 	}
 	
@@ -139,6 +144,14 @@ public class EcomicType extends Activity {
 		IntentFilter filter = new IntentFilter();
 		filter.addAction("android.net.conn.CONNECTIVITY_CHANGE");
 		registerReceiver(broadcastReceiver, filter);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (android.R.id.home == item.getItemId()) {
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 }
