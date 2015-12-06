@@ -54,7 +54,7 @@ public class Tab3 extends Fragment {
 		ivDelete = (ImageView) v.findViewById(R.id.ivDelete);
 		arrayMangas = new ArrayList<ListMangaItems>();
 		new DoGetRss().execute();
-
+        //set khi click vào item list view sẽ chuyển qua activity thông tin truyện đồng thời gửi theo dữ liệu position
 		listView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -71,7 +71,7 @@ public class Tab3 extends Fragment {
 				startActivity(intent);
 			}
 		});
-
+        //phần lọc ghi người dùng gõ vào edt tìm kiếm
 		edtSearch.addTextChangedListener(new TextWatcher() {
 
 			@Override
@@ -107,7 +107,7 @@ public class Tab3 extends Fragment {
 		});
 		return v;
 	}
-
+    // lấy thông tin các truyện từ Rss 
 	class DoGetRss extends AsyncTask<Void, Void, Void> {
 
 		@Override
@@ -159,6 +159,7 @@ public class Tab3 extends Fragment {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			Log.d("types", String.valueOf(arrayMangas.size()));
+			//sau khi lấy thông tin truyện sẽ được gán vào listview
 			adapter = new ListMangaAdapter(getActivity(), arrayMangas);
 			listView.setAdapter(adapter);
 		}

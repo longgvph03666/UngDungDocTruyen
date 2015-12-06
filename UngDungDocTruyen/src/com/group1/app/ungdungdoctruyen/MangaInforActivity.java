@@ -196,6 +196,7 @@ public class MangaInforActivity extends Activity {
 	       }
 	    
 	}
+	//kiểm tra xem người dùng đã đọc truyện này chưa
 	public boolean checkResume(String _chap) throws SQLException {
 	    int count = -1;
 	    Cursor c = null; 
@@ -216,7 +217,7 @@ public class MangaInforActivity extends Activity {
 	    
 	}
 
-	
+	//get dữ liệu thông tin truyện từ Rss về
 	class DoGetRss extends AsyncTask<Void, Void, Void>{
 
 		@Override
@@ -257,6 +258,7 @@ public class MangaInforActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			//sau khi lấy đc dữ liệu gán giá trị cho các view
 			tvAuthor.setText(arrManga.get(position).getAuthor().toString());
 			tvGenre.setText(arrManga.get(position).getGenre().toString());
 			tvMangaName.setText(arrManga.get(position).getMangaName().toString());
@@ -264,6 +266,7 @@ public class MangaInforActivity extends Activity {
 			
 			imageLoader.DisplayImage(arrManga.get(position).getUrl().toString(),imgCover);
 			//new ImageDownloaderTask(imgCover).execute(arrManga.get(position).getUrl().toString());
+			//Check dữ liệu ở bảng ưa thích
 			 if(checkName(arrManga.get(position).getMangaName().toString())){
 				  btnLike.setText("Dislike");
 			  }
@@ -294,6 +297,7 @@ public class MangaInforActivity extends Activity {
 				});
 		}
 		}	
+    //lấy dữ liệu thông tin các chap truyện
 	class DoGetChapter extends AsyncTask<Void, Void, Void>{
 
 		@Override
@@ -330,6 +334,7 @@ public class MangaInforActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
+			//sau khi lấy được dữ liệu, các chap truyện sẽ được hiển thị dưới dạng listview
 			ChapterAdapter adapter = new ChapterAdapter(MangaInforActivity.this,R.layout.chapter_row, arrChapter);		
 			lv.setAdapter(adapter);	
 			ListAdapter listAdapter = lv.getAdapter();

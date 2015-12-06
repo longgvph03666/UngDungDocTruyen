@@ -351,7 +351,7 @@ public class MainActivity extends FragmentActivity {
 		}
 		return false;
 	}
-
+   //khởi tạo cơ sở dữ liệu
 	public SQLiteDatabase getDatabase() {
 		database = openOrCreateDatabase("mydata.db",
 				SQLiteDatabase.CREATE_IF_NECESSARY, null);

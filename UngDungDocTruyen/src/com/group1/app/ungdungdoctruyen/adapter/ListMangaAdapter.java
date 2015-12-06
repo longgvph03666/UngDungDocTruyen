@@ -97,7 +97,7 @@ public class ListMangaAdapter extends BaseAdapter {
         TextView author;
         ImageView imageView;
     }
-    
+    //lọc dữ liệu cần tìm theo tên truyện
     public void filter(String charText) {
 		charText = charText.toLowerCase(Locale.getDefault());
 		mangaList.clear();
