@@ -123,10 +123,10 @@ public class ListDownloadActivity extends ListActivity {
 				Intent i = new Intent(this, ReadMangaActivity.class);
 				i.putExtra("path", file.getPath());
 				final String strLength = Long.toString(file.length() / 1000);
-				if (file.length() / 1000 > 16000) {
+				if (file.length() / 1000 > 30000) {
 					Toast.makeText(
 							getApplicationContext(),
-							"Please choose zip file have less than or equal 1.5 Mb ",
+							"Please choose zip file have less than or equal 30 Mb ",
 							2000).show();
 				} else {
 
